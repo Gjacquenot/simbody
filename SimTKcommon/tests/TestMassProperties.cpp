@@ -337,6 +337,12 @@ void testArticulatedInertia() {
     ArticulatedInertia abi(mass,massMoment,inertia);
 
     const SpatialMat mabi = abi.toSpatialMat();
+
+    // TODO: Temporary code to investigate failure on AppVeyor.
+    cout << mabi(1,0) << endl;
+    cout << ~massMoment << endl;
+    cout << mabi(1,0) - ~massMoment << endl;
+
     SimTK_TEST( mabi(0,0) == inertia );
     SimTK_TEST( mabi(0,1) == massMoment );
     SimTK_TEST( mabi(1,0) == ~massMoment );
