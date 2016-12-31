@@ -150,7 +150,7 @@ static void draw(const Geo::CubicBezierCurve& curve, const Transform& pose,
         for (int i=0; i < NumFrames; ++i) {
             const Real u = (Real)i/(NumFrames-1);
             Transform X_FP;
-            const Real k = curve.calcCurveFrame(u, X_FP);
+            /* const Real k = */ curve.calcCurveFrame(u, X_FP);
             dec.addDecoration(
                 DecorativeLine(X_FP.p(), X_FP.p()+X_FP.x()/4)
                 .setColor(Blue).setLineThickness(1));
@@ -360,10 +360,10 @@ int main() {
     //        .setOpacity(.1)
     //        .setColor(Blue));
     const int n=5;
-    const fVec3 shft(0,0,0);
-    fVec3 pd[] = {shft+fVec3(.5f,0,-.5f), shft+fVec3(0,1,.4f), shft+fVec3(-.5f,1e-3f,0)
-        , shft+fVec3(.5f,-.2f,.1f), shft+fVec3(.5f,.5f,.5f)
-    };
+    // const fVec3 shft(0,0,0);
+    // fVec3 pd[] = {shft+fVec3(.5f,0,-.5f), shft+fVec3(0,1,.4f), shft+fVec3(-.5f,1e-3f,0)
+    //    , shft+fVec3(.5f,-.2f,.1f), shft+fVec3(.5f,.5f,.5f)
+    //};
     Array_<int> which;
     //Array_<fVec3> p(pd, pd+n);
     Array_<fVec3> p;
@@ -574,10 +574,10 @@ int main() {
 
     BicubicSurface::PatchHint hint1, hint2;
     Array_<int> fx(1,0), fy(1,1);
-    const Real Len = .25;
-    Vec2 xy0 = rough.getMinXY(), range = rough.getMaxXY()-xy0;
-    const int NSamples = 25;
-    const Vec2 incr( range / (NSamples-1) );
+    // const Real Len = .25;
+    // Vec2 xy0 = rough.getMinXY(), range = rough.getMaxXY()-xy0;
+    // const int NSamples = 25;
+    // const Vec2 incr( range / (NSamples-1) );
     //for (int i=0; i<NSamples; ++i)
     //    for (int j=0; j<NSamples; ++j) {
     //        Vec2 xy(xy0 + Vec2(i*incr[0], j*incr[1]));
@@ -669,11 +669,11 @@ int main() {
     Vector              consMobForces;
     matter.calcConstraintForcesFromMultipliers(state, -lambda, consBodyForcesInG,
         consMobForces);
-    const MobodIndex p2x = pendulum2.getMobilizedBodyIndex();
-    const MobodIndex p2bx = pendulum2b.getMobilizedBodyIndex();
-    const Rotation& R_G2 = pendulum2.getBodyTransform(state).R();
+    // const MobodIndex p2x = pendulum2.getMobilizedBodyIndex();
+    // const MobodIndex p2bx = pendulum2b.getMobilizedBodyIndex();
+    // const Rotation& R_G2 = pendulum2.getBodyTransform(state).R();
     //consBodyForcesInG[p2x] = shiftForceFromTo(consBodyForcesInG[p2x],
-     //                                         Vec3(0), R_G2*Vec3(0,1,0));
+    //                                         Vec3(0), R_G2*Vec3(0,1,0));
 
     const int nb = matter.getNumBodies();
     Vector_<SpatialVec> forcesAtMInG;
@@ -700,8 +700,8 @@ int main() {
 
     const MobodIndex p1x = pendulum1.getMobilizedBodyIndex();
     const MobodIndex p1bx = pendulum1b.getMobilizedBodyIndex();
-    const Rotation& R_G1 = pendulum1.getBodyTransform(state).R();
-    const Rotation& R_G1b = pendulum1b.getBodyTransform(state).R();
+    // const Rotation& R_G1 = pendulum1.getBodyTransform(state).R();
+    // const Rotation& R_G1b = pendulum1b.getBodyTransform(state).R();
 
     for (MobodIndex i(0); i < nb; ++i) {
         const Mobod& body = matter.getMobilizedBody(i);
@@ -732,7 +732,7 @@ int main() {
     state = integ.getState();
     system.realize(state);
     matter.calcMobilizerReactionForces(state, forcesAtMInG);
-    const Transform& X_GP = pendulum1.getBodyTransform(state);
+    // const Transform& X_GP = pendulum1.getBodyTransform(state);
     //forcesAtMInG[1][1] = X_GP.R()*forcesAtMInG[1][1];
     std::cout << "FM_G=" << forcesAtMInG << "\n";
     ts.stepTo(1.2);

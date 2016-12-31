@@ -117,11 +117,11 @@ int main() {
     Vector              consMobForces;
     matter.calcConstraintForcesFromMultipliers(state, -lambda, consBodyForcesInG,
         consMobForces);
-    const MobodIndex p2x = pendulum2.getMobilizedBodyIndex();
-    const MobodIndex p2bx = pendulum2b.getMobilizedBodyIndex();
-    const Rotation& R_G2 = pendulum2.getBodyTransform(state).R();
-    //consBodyForcesInG[p2x] = shiftForceFromTo(consBodyForcesInG[p2x],
-     //                                         Vec3(0), R_G2*Vec3(0,1,0));
+    // const MobodIndex p2x = pendulum2.getMobilizedBodyIndex();
+    // const MobodIndex p2bx = pendulum2b.getMobilizedBodyIndex();
+    // const Rotation& R_G2 = pendulum2.getBodyTransform(state).R();
+    // consBodyForcesInG[p2x] = shiftForceFromTo(consBodyForcesInG[p2x],
+    //                                           Vec3(0), R_G2*Vec3(0,1,0));
 
     const int nb = matter.getNumBodies();
     Vector_<SpatialVec> forcesAtMInG;
@@ -160,8 +160,8 @@ int main() {
 
     const MobodIndex p1x = pendulum1.getMobilizedBodyIndex();
     const MobodIndex p1bx = pendulum1b.getMobilizedBodyIndex();
-    const Rotation& R_G1 = pendulum1.getBodyTransform(state).R();
-    const Rotation& R_G1b = pendulum1b.getBodyTransform(state).R();
+    // const Rotation& R_G1 = pendulum1.getBodyTransform(state).R();
+    // const Rotation& R_G1b = pendulum1b.getBodyTransform(state).R();
 
     // This time shift the child reactions from the mobilizer frames M to the
     // child body frames B so we can compare with the constraint forces that
@@ -199,8 +199,8 @@ int main() {
     state = integ.getState();
     system.realize(state);
     matter.calcMobilizerReactionForces(state, forcesAtMInG);
-    const Transform& X_GP = pendulum1.getBodyTransform(state);
-    //forcesAtMInG[1][1] = X_GP.R()*forcesAtMInG[1][1];
+    // const Transform& X_GP = pendulum1.getBodyTransform(state);
+    // forcesAtMInG[1][1] = X_GP.R()*forcesAtMInG[1][1];
     std::cout << "FM_G=" << forcesAtMInG << "\n";
     ts.stepTo(Real(1.2));
     state = integ.getState();

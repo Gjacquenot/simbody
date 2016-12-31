@@ -47,7 +47,7 @@ using namespace SimTK;
 // as they should be. You should see nothing but exact zeroes print out for
 // second and subsequent runs.
 //#define TEST_REPEATABILITY
-static const int NTries=3;
+// static const int NTries=3;
 
 const Real ReportInterval=1./30;
    
@@ -855,7 +855,7 @@ public:
 
     // This is the witness function.
     Real getValue(const State& state) const override {
-        const SimbodyMatterSubsystem& matter = m_mbs.getMatterSubsystem();
+        // const SimbodyMatterSubsystem& matter = m_mbs.getMatterSubsystem();
         const MyContactElement& uni = m_unis.getContactElement(m_which);
         if (!uni.isDisabled(state)) 
             return 0; // already locked
@@ -1597,11 +1597,11 @@ int main(int argc, char** argv) {
         const Real Radius = .02;
     #else
         const Real RunTime=20;
-        const Real Stiffness = 1e6;
+        // const Real Stiffness = 1e6;
         const Real CoefRest = 0.5; 
-        const Real TargetVelocity = 3; // speed at which to match coef rest
-//        const Real Dissipation = (1-CoefRest)/TargetVelocity;
-        const Real Dissipation = 0.1;
+        // const Real TargetVelocity = 3; // speed at which to match coef rest
+        // const Real Dissipation = (1-CoefRest)/TargetVelocity;
+        // const Real Dissipation = 0.1;
         const Real mu_d = .5;
         const Real mu_s = .7;
         const Real mu_v = 0.05;
@@ -2153,7 +2153,7 @@ void ContactOn::
 processCompressionPhase(MyElementSubset&    proximal,
                         State&              s) const
 {
-    const int ReviseNormalNIters = 6;
+    // const int ReviseNormalNIters = 6;
 
     SimTK_DEBUG2("Entering processCompressionPhase(): "
         "%d/%d impact/stick candidates ...\n", proximal.m_contact.size(),
@@ -2174,7 +2174,7 @@ processCompressionPhase(MyElementSubset&    proximal,
     // TODO: note stiction is unconditionally disabled
     m_unis.enableConstraintSubset(proximal, false, s); 
 
-    int pass=0, nContactsDisabled=0, nStictionDisabled=0, nContactsReenabled=0;
+    int pass=0, nContactsDisabled=0, nStictionDisabled=0 /*, nContactsReenabled=0*/;
     while (true) {
         ++pass; 
         SimTK_DEBUG1("processCompressionPhase(): pass %d\n", pass);
@@ -2219,8 +2219,8 @@ processCompressionPhase(MyElementSubset&    proximal,
         if (mostNegativeVerr < 0) {
             SimTK_DEBUG2("  !!! Inactive contact %d violated, verr=%g\n", 
                 worstInactiveContact, mostNegativeVerr);
-            const MyContactElement& cont = 
-                m_unis.getContactElement(worstInactiveContact);
+            // const MyContactElement& cont = 
+            //     m_unis.getContactElement(worstInactiveContact);
             //TODO -- must use a tolerance or prevent looping
             //++nContactsReenabled;
             //cont.enable(s);
@@ -2583,7 +2583,7 @@ selectActiveConstraints(State& state, Real accuracy) const {
 void MyUnilateralConstraintSet::
 findActiveCandidates(State& s, const MyElementSubset& candidates) const
 {
-    const int ReviseNormalNIters = 6;
+    // const int ReviseNormalNIters = 6;
     showConstraintStatus(s, "ENTER findActiveCandidates()");
     if (candidates.m_contact.empty()) {
         // Can't be any friction either, if there are no contacts.
@@ -2652,7 +2652,7 @@ findActiveCandidates(State& s, const MyElementSubset& candidates) const
         if (mostNegativeAerr < 0) {
             SimTK_DEBUG2("  !!! Inactive contact %d violated, aerr=%g\n", 
                 worstInactiveContact, mostNegativeAerr);
-            const MyContactElement& cont = getContactElement(worstInactiveContact);
+            // const MyContactElement& cont = getContactElement(worstInactiveContact);
             //TODO -- must use a tolerance or prevent looping
             //++nContactsReenabled;
             //cont.enable(s);

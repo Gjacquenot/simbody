@@ -112,7 +112,7 @@ bool calcContactPatchDetailsById(const State&   state,
         return false;
     }
 
-    const Transform& X_S1S2 = contact.getTransform();
+    // const Transform& X_S1S2 = contact.getTransform();
     const ContactSurfaceIndex surf1(contact.getSurface1());
     const ContactSurfaceIndex surf2(contact.getSurface2());
     const MobilizedBody& mobod1 = m_tracker.getMobilizedBody(surf1);
@@ -265,7 +265,7 @@ int realizeSubsystemDynamicsImpl(const State& s) const override {
     ensureForceCacheValid(s);
 
     const MultibodySystem&        mbs    = getMultibodySystem(); // my owner
-    const SimbodyMatterSubsystem& matter = mbs.getMatterSubsystem();
+    // const SimbodyMatterSubsystem& matter = mbs.getMatterSubsystem();
 
     // Get access to System-global force cache array.
     Vector_<SpatialVec>& rigidBodyForces =
@@ -451,7 +451,7 @@ ensureForceCacheValid(const State& state) const {
             // No need to generate forces; this will be gone next time.
             continue;
         }
-        const Transform& X_S1S2 = contact.getTransform();
+        // const Transform& X_S1S2 = contact.getTransform();
         const ContactSurfaceIndex surf1(contact.getSurface1());
         const ContactSurfaceIndex surf2(contact.getSurface2());
         const MobilizedBody& mobod1 = m_tracker.getMobilizedBody(surf1);
@@ -731,7 +731,7 @@ static void calcHertzContactForce
     const Transform&          X_S1S2 = contact.getTransform();
 
     // Abbreviations.
-    const Rotation& R12 = X_S1S2.R(); // orientation of S2 in S1
+    // const Rotation& R12 = X_S1S2.R(); // orientation of S2 in S1
     const Vec3&     p12 = X_S1S2.p(); // position of O2 in S1
     const Vec3&     w12 = V_S1S2[0];  // ang. vel. of S2 in S1
     const Vec3&     v12 = V_S1S2[1];  // vel. of O2 in S1
@@ -1851,7 +1851,7 @@ processOneMesh
     // Don't initialize contact details; we're going to append them.
 
     // Abbreviations.
-    const Rotation& RMO = X_MO.R(); // orientation of O in M
+    // const Rotation& RMO = X_MO.R(); // orientation of O in M
     const Vec3&     pMO = X_MO.p(); // position of OO (origin of O) in M
     const Vec3&     wMO = V_MO[0];  // ang. vel. of O in M
     const Vec3&     vMO = V_MO[1];  // vel. of OO in M

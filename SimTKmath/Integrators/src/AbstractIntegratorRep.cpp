@@ -98,7 +98,7 @@ void AbstractIntegratorRep::createInterpolatedState(Real t) {
 // example after we have localized an event trigger to an interval tLow:tHigh
 // where tHigh < tAdvanced.
 void AbstractIntegratorRep::backUpAdvancedStateByInterpolation(Real t) {
-    const System& system   = getSystem();
+    //const System& system   = getSystem();
     State& advanced = updAdvancedState();
     Vector yinterp, dummy;
 
@@ -243,7 +243,6 @@ AbstractIntegratorRep::stepTo(Real reportTime, Real scheduledEventTime) {
       // we don't reach reportTime we'll return after that many steps.
       int internalStepsTaken = 0;
 
-      bool wasLastStep=false;
       for(;;) { // MAIN STEPPING LOOP
 
           // At this point the system's advancedState is the one to which
@@ -518,10 +517,10 @@ bool AbstractIntegratorRep::takeOneStep(Real tMax, Real tReport)
     // These are the pre-recorded starting values. State "advanced" will
     // get mangled during trial steps but these remain unchanged.
     const Real    t0     = getPreviousTime();
-    const Vector& y0     = getPreviousY();
-    const Vector& ydot0  = getPreviousYDot();
-    const Vector& uScale = getPreviousUScale();
-    const Vector& zScale = getPreviousZScale();
+    // const Vector& y0     = getPreviousY();
+    // const Vector& ydot0  = getPreviousYDot();
+    // const Vector& uScale = getPreviousUScale();
+    // const Vector& zScale = getPreviousZScale();
 
     const int nq = advanced.getNQ(), 
               nu = advanced.getNU(), 

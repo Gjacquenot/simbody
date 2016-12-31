@@ -150,7 +150,6 @@ int main () {
     integ.setConstraintTolerance(1e-4);
 
     const Real tFinal = 20.003;
-    const Real hReport = 1.;
 
     integ.setFinalTime(tFinal);
     

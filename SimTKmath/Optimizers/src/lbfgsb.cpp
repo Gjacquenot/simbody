@@ -2064,7 +2064,6 @@ Real *theta, Real *rr, Real *dr, Real *stp, Real *dtd)
     /* Local variables */
     int j;
     int pointr;
-    const int& jr = j;
 
 /*     ************ */
 

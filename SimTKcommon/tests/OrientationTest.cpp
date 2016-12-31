@@ -82,7 +82,6 @@ void cosTest() {
 }
 
 void quatTest() {
-    const Real pi2 = std::acos(Real(0));
     Vec4 avOrig(-.1-1e-4, 7e1,-.2,.1);
     Quaternion q1,q2;
     q1.setQuaternionFromAngleAxis(avOrig);
@@ -339,7 +338,7 @@ try {
     cout << "atan2(02/00)-pi2=" << atan2(b123[0][2],b123[0][0])-pi2 << endl;
     Vec3 v123 = b123.convertThreeAxesRotationToThreeAngles( BodyRotationSequence, XAxis, YAxis, ZAxis );
     Vec4 aax = b123.convertRotationToAngleAxis();
-    cout << "vin=" << vin << "\nvout=" << v123 << endl;
+    cout << "vin=" << vin << "\nvout=" << v123 << "\naax=" << aax << endl;
     Rotation b123x( BodyRotationSequence, v123[0], XAxis, v123[1], YAxis, v123[2], ZAxis );
     Vec4 aax2 = (~b123*b123x).convertRotationToAngleAxis();
     cout << " aax2=" << aax2 << endl;

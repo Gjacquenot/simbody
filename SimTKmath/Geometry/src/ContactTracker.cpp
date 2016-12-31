@@ -1308,6 +1308,7 @@ bool ContactTracker::ConvexImplicitPair::trackContact
     Real accuracyAchieved; int numNewtonIters;
     bool converged = refineImplicitPair(shapeA, pointP_A, shapeB, pointQ_B,
         X_AB, accuracyRequested, accuracyAchieved, numNewtonIters);
+    assert(converged);
 
     const Vec3 pointQ_A = X_AB*pointQ_B;  // Q on B, measured & expressed in A
 

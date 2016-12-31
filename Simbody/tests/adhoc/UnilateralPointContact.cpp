@@ -370,7 +370,7 @@ public:
 
     // This is the witness function.
     Real getValue(const State& state) const override {
-        const SimbodyMatterSubsystem& matter = m_mbs.getMatterSubsystem();
+        // const SimbodyMatterSubsystem& matter = m_mbs.getMatterSubsystem();
         const MyUnilateralConstraint& uni = *m_unis[m_which];
         if (!uni.isDisabled(state)) 
             return 0; // already locked

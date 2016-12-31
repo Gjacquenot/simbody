@@ -332,12 +332,14 @@ int PendulumSystemGuts::realizeAccelerationImpl(const State& s) const {
  * 
  *
  */
+/*
 static Real wrms(const Vector& y, const Vector& w) {
     Real sumsq = 0;
     for (int i=0; i<y.size(); ++i)
         sumsq += square(y[i]*w[i]);
     return std::sqrt(sumsq/y.size());
 }
+*/
 
 //int PendulumSystemGuts::projectImpl(State& s, Real consAccuracy,
 //                                const Vector& yweights, const Vector& ctols,
@@ -447,13 +449,13 @@ void PendulumSystemGuts::projectQImpl(State& s, Vector& qerrest,
     Real wqchg;
     do {
         // Position projection
-        Real r2 = ~q*q; // x^2+y^2
+        // Real r2 = ~q*q; // x^2+y^2
         Real wqr2 = square(wq[1]*q[0]) + square(wq[0]*q[1]);
         Row2 P(~q), PW(tp*q[0]/wq[0], tp*q[1]/wq[1]);
-        Vec2 Pinv(q/r2);
+        // Vec2 Pinv(q/r2);
         Vec2 PWinv = Vec2(square(wq[1])*wq[0]*q[0], 
                             square(wq[0])*wq[1]*q[1]) / (tp*wqr2);
-        Vec2 dq  = Pinv*(ep);      //cout << "dq=" << dq << endl;
+        // Vec2 dq  = Pinv*(ep);     cout << "dq=" << dq << endl;
         Vec2 wdq = PWinv*(tp*ep);  //cout << "wdq=" << wdq << endl;
     
         wqchg = std::sqrt(wdq.normSqr()/q.size()); // wrms norm
@@ -494,7 +496,7 @@ void PendulumSystemGuts::projectQImpl(State& s, Vector& qerrest,
 void PendulumSystemGuts::projectUImpl(State& s, Vector& uerrest, 
              const ProjectOptions& opts, ProjectResults& results) const
 {
-    const Real consAccuracy = opts.getRequiredAccuracy();
+    // const Real consAccuracy = opts.getRequiredAccuracy();
     const Vector& uweights = s.getUWeights(subsysIndex);
     const Vector& ctols = s.getUErrWeights(subsysIndex);
 
@@ -502,23 +504,23 @@ void PendulumSystemGuts::projectUImpl(State& s, Vector& uerrest,
     const Real& tv = ctols[0];
 
     const Vec2& q = Vec2::getAs(&s.getQ(subsysIndex)[0]); // set up aliases
-    const Vec2& u = Vec2::getAs(&s.getU(subsysIndex)[0]);
+    // const Vec2& u = Vec2::getAs(&s.getU(subsysIndex)[0]);
     Real& ev = s.updUErr(subsysIndex)[0];
 
     //cout << "BEFORE wperr=" << tp*ep << endl;
 
     // Do velocity projection at current values of q, which should have
     // been projected already.
-    Real r2 = ~q*q; // x^2+y^2
+    // Real r2 = ~q*q; // x^2+y^2
     Real wur2 = square(wu[1]*q[0]) + square(wu[0]*q[1]);
     Row2 V(~q), VW(tv*q[0]/wu[0], tv*q[1]/wu[1]);
-    Vec2 Vinv(q/r2);
+    // Vec2 Vinv(q/r2);
     Vec2 VWinv = Vec2(square(wu[1])*wu[0]*q[0], 
                       square(wu[0])*wu[1]*q[1]) / (tv*wur2);
     realize(s, Stage::Velocity); // calculate UErr (ev)
 
     //cout << "BEFORE wverr=" << tv*ev << endl;
-    Vec2 du  = Vinv*(ev);      //cout << "du=" << du << endl;
+    //Vec2 du  = Vinv*(ev);      cout << "du=" << du << endl;
     Vec2 wdu = VWinv*(tv*ev);  //cout << "wdu=" << wdu << endl;
 
     s.updU(subsysIndex)[0] -= wdu[0]/wu[0]; 

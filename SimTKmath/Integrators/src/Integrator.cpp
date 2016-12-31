@@ -349,9 +349,9 @@ void IntegratorRep::initialize(const State& initState) {
     systemHasTimeAdvancedEvents = getSystem().hasTimeAdvancedEvents();
 
     // Allocate integrator-local data structures now that we know the sizes.
-    const int ny = getAdvancedState().getNY();
-    const int nc = getAdvancedState().getNYErr();
-    const int ne = getAdvancedState().getNEventTriggers();
+    // const int ny = getAdvancedState().getNY();
+    // const int nc = getAdvancedState().getNYErr();
+    // const int ne = getAdvancedState().getNEventTriggers();
     timeScaleInUse = getSystem().getDefaultTimeScale();
 
     // Set accuracy and consTol to their user-requested values or

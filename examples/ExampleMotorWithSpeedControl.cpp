@@ -54,9 +54,9 @@ static const int ResetItem=1, QuitItem=2;
 
 #define USE_TORQUE_LIMITED_MOTOR
 const Real MaxTorque = 100; // N-m
-const Real MaxTorqueRate = .5; // s / MaxTorque change
+// const Real MaxTorqueRate = .5; // s / MaxTorque change
 const Real TorqueGain = 50000, DampingGain = 1000;
-const Real TorqueDecay = 100;
+// const Real TorqueDecay = 100;
 
 #ifdef USE_TORQUE_LIMITED_MOTOR
 // This Force element implements a torque-limited motor that runs at a user-
@@ -157,7 +157,7 @@ public:
         //    delay, u_actual-u_desired,
         //    u_actual, u_desired, trq, trqDot);
 
-        Real rateLimit = m_torqueLimit/MaxTorqueRate; // full-scale change
+        // Real rateLimit = m_torqueLimit/MaxTorqueRate; // full-scale change
         //clampInPlace(-rateLimit, trqDot, rateLimit);
 
         m_matter.updZDot(state)[m_trqIx] = trqDot; 

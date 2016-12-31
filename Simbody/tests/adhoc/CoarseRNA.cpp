@@ -40,9 +40,6 @@
 using namespace std;
 using namespace SimTK;
 
-static const Real Deg2Rad = (Real)SimTK_DEGREE_TO_RADIAN;
-static const int  GroundBodyNum = 0; // ground is always body 0
-
 static const Real g = 9.8; // meters/s^2; apply in –y direction
 
 static const Real DuplexRadius = 3; // A
@@ -307,7 +304,7 @@ try // If anything goes wrong, an exception will be thrown.
     }
 
     // And a study using the Runge Kutta Merson integrator
-    bool suppressProject = false;
+    // bool suppressProject = false;
 
     RungeKuttaMersonIntegrator myStudy(mbs);
     //RungeKuttaFeldbergIntegrator myStudy(mbs);

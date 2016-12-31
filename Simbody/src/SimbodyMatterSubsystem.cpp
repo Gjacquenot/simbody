@@ -1083,7 +1083,7 @@ void SimbodyMatterSubsystem::multiplyBySystemJacobian
    (const State& s, const Vector& u, Vector_<SpatialVec>& Ju) const
 {   
     const SimbodyMatterSubsystemRep& rep = getRep();
-    const int nb = rep.getNumBodies(), nu = rep.getNumMobilities();
+    const int nu = rep.getNumMobilities();
 
     SimTK_ERRCHK2_ALWAYS(u.size() == nu,
         "SimbodyMatterSubsystem::multiplyBySystemJacobian()",
@@ -1114,7 +1114,7 @@ void SimbodyMatterSubsystem::multiplyBySystemJacobianTranspose
    (const State& s, const Vector_<SpatialVec>& F_G, Vector& f) const
 {   
     const SimbodyMatterSubsystemRep& rep = getRep();
-    const int nb = rep.getNumBodies(), nu = rep.getNumMobilities();
+    const int nb = rep.getNumBodies();
 
     SimTK_ERRCHK2_ALWAYS(F_G.size() == nb,
         "SimbodyMatterSubsystem::multiplyBySystemJacobianTranspose()",
@@ -1233,7 +1233,7 @@ void SimbodyMatterSubsystem::calcBiasForSystemJacobian
     Vector&         JDotu) const 
 {
     const SimbodyMatterSubsystemRep& rep = getRep();
-    const int nb = rep.getNumBodies(), nu = rep.getNumMobilities();
+    const int nb = rep.getNumBodies();
 
     const SBTreeVelocityCache& vc = rep.getTreeVelocityCache(state);
     const Array_<SpatialVec,MobilizedBodyIndex>& tca = 

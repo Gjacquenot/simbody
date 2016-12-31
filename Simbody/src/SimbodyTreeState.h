@@ -706,7 +706,7 @@ public:
         // Pull out construction-stage information from the tree.
         const int nBodies = tree.nBodies;
         const int nDofs   = tree.nDOFs;   // this is the number of u's (nu)
-        const int maxNQs  = tree.maxNQs;  // allocate the max # q's we'll ever need
+        // const int maxNQs  = tree.maxNQs;  // allocate the max # q's we'll ever need
         const int nacb    = tree.nAncestorConstrainedBodies;
 
         // These contain uninitialized junk. Body-indexed entries get their
@@ -883,7 +883,7 @@ public:
         const int nBodies = tree.nBodies;
         const int nDofs   = tree.nDOFs;     // this is the number of u's (nu)
         const int nSqDofs = tree.sumSqDOFs;   // sum(ndof^2) for each joint
-        const int maxNQs  = tree.maxNQs;  // allocate the max # q's we'll ever need     
+        // const int maxNQs  = tree.maxNQs;  // allocate the max # q's we'll ever need     
         
         articulatedBodyInertia.resize(nBodies); // TODO: ground initialization
 
@@ -975,7 +975,7 @@ public:
         // Pull out construction-stage information from the tree.
         const int nBodies = tree.nBodies;
         const int nDofs   = tree.nDOFs;  // this is the number of u's (nu)
-        const int maxNQs  = tree.maxNQs; // allocate max # q's we'll ever need
+        // const int maxNQs  = tree.maxNQs; // allocate max # q's we'll ever need
         const int nacb    = tree.nAncestorConstrainedBodies;
 
         const SpatialVec SVZero(Vec3(0),Vec3(0));

@@ -174,7 +174,7 @@ public:
     // the forces. We can't initialize the force arrays because we don't yet
     // know the problem size.
     int realizeSubsystemTopologyImpl(State& s) const override {
-        const MultibodySystem& mbs = getMultibodySystem();
+        // const MultibodySystem& mbs = getMultibodySystem();
 
         for (Stage g(Stage::Model); g<=Stage::Dynamics; ++g)
             forceCacheIndices[g-Stage::Model] = 

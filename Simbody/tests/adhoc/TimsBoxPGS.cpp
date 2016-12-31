@@ -1232,8 +1232,8 @@ int main(int argc, char** argv) {
 
     PGSTimeStepper pgs(mbs);
 
-    const SimbodyMatterSubsystem&    matter = mbs.getMatterSubsystem();
-    const MyUnilateralConstraintSet& unis   = mbs.getUnis();
+    // const SimbodyMatterSubsystem&    matter = mbs.getMatterSubsystem();
+    // const MyUnilateralConstraintSet& unis   = mbs.getUnis();
 
     Visualizer viz(mbs);
     viz.setShowSimTime(true);
@@ -1273,7 +1273,8 @@ int main(int argc, char** argv) {
         
     Array_<State> states; states.reserve(10000);
 
-    int nSteps=0, nStepsWithEvent = 0;
+    int nSteps=0;
+    // int  nStepsWithEvent = 0;
 
     const double startReal = realTime();
     const double startCPU = cpuTime();
@@ -1358,7 +1359,7 @@ stepToOLD(Real time) {
     // Abbreviations.
     const PGSAugmentedMultibodySystem&  mbs    = m_ambs;
     const SimbodyMatterSubsystem&       matter = mbs.getMatterSubsystem();
-    const MyUnilateralConstraintSet&    unis   = mbs.getUnis();
+    // const MyUnilateralConstraintSet&    unis   = mbs.getUnis();
     State&                              s      = m_state;
 
     const Real h = time - m_state.getTime();    // max timestep
@@ -1390,7 +1391,7 @@ stepToOLD(Real time) {
 
     // If we're in Newton mode, or if a contact specifies Newton restitution,
     // then modify the appropriate verr's here.
-    const bool anyNewton = applyNewtonRestitutionIfAny(s, verr);
+    /* const bool anyNewton = */ applyNewtonRestitutionIfAny(s, verr);
 
     // Evaluate applied forces and get reference to them. These include
     // gravity but not centrifugal forces.
@@ -1522,7 +1523,7 @@ stepTo(Real time) {
     // Abbreviations.
     const PGSAugmentedMultibodySystem&  mbs    = m_ambs;
     const SimbodyMatterSubsystem&       matter = mbs.getMatterSubsystem();
-    const MyUnilateralConstraintSet&    unis   = mbs.getUnis();
+    // const MyUnilateralConstraintSet&    unis   = mbs.getUnis();
     State&                              s      = m_state;
 
     const Real t0 = m_state.getTime();
@@ -1557,7 +1558,7 @@ stepTo(Real time) {
     // If we're in Newton mode, or if a contact specifies Newton restitution,
     // then modify the appropriate verr's here.
     Vector verr = verr0;
-    const bool anyNewton = applyNewtonRestitutionIfAny(s, verr);
+    /* const bool anyNewton = */ applyNewtonRestitutionIfAny(s, verr);
 
     // Calculate the constraint compliance matrix GM\~G.
     matter.calcProjectedMInv(s, m_GMInvGt); // m X m
@@ -2295,8 +2296,6 @@ bool SuccessivePruning::solve
     // Track total error for all included equations, and the error for just
     // those equations that are being enforced.
     bool converged = false;
-    Real normRMSall = Infinity, normRMSenf = Infinity;
-    Real prevNormRMSenf = NaN;
 
     // Each interval is a complete restart, except that we continue to
     // accumulate piTotal. We're done when we took an interval of length
@@ -2375,8 +2374,8 @@ bool SuccessivePruning::solve
                             continue;
                         if (!(m_fricCondition[k]==Slipping || m_fricCondition[k]==Impending))
                             continue;
-                        const ActiveIndex ax=m_mult2active[Fk[0]], ay=m_mult2active[Fk[1]], 
-                                          az=m_mult2active[Nk[0]];
+                        // const ActiveIndex ax=m_mult2active[Fk[0]], ay=m_mult2active[Fk[1]];
+                        const ActiveIndex az=m_mult2active[Nk[0]];
                         if (!az.isValid())
                             continue; // expander; always N>0
                     }
@@ -2548,9 +2547,9 @@ bool SuccessivePruning::solve
             if (mustReleaseFriction) {
                 Frictional& fric = frictional[worstFric];
                 const Array_<MultiplierIndex>& Fk = fric.m_Fk;
-                const Array_<MultiplierIndex>& Nk = fric.m_Nk; // normal components
-                const ActiveIndex ax=m_mult2active[Fk[0]], ay=m_mult2active[Fk[1]], 
-                                  az=m_mult2active[Nk[0]];
+                // const Array_<MultiplierIndex>& Nk = fric.m_Nk; // normal components
+                // const ActiveIndex ax=m_mult2active[Fk[0]], ay=m_mult2active[Fk[1]], 
+                //                   az=m_mult2active[Nk[0]];
 
                 printf("switch worst fric %d from rolling->impending err=%g\n", 
                        worstFric, worstFricValue);
@@ -2747,9 +2746,9 @@ collectConstraintInfo(const State& s) { //TODO: redo
     for (unsigned i=0; i < m_proximals.m_friction.size(); ++i) {
         const int id = m_proximals.m_friction[i];
         const MyFrictionElement& felt = unis.getFrictionElement(id);
-        const Real mu_d = felt.getDynamicFrictionCoef();
-        const Real mu_s = felt.getStaticFrictionCoef();
-        const Real mu_v = felt.getViscousFrictionCoef();
+        // const Real mu_d = felt.getDynamicFrictionCoef();
+        // const Real mu_s = felt.getStaticFrictionCoef();
+        // const Real mu_v = felt.getViscousFrictionCoef();
         const MyPointContactFriction& pelt = // TODO: generalize
             dynamic_cast<const MyPointContactFriction&>(felt);
         const MultiplierIndex mx = pelt.getMultIndexX(s);
@@ -3384,7 +3383,8 @@ updateJacobianForSliding(const Array_<Frictional>& frictional) {
             const RowVectorView Ax = A[mx], Ay = A[my];
 
             if (az.isValid()) { // Impending normal is active
-                const Real piz=m_piActive[az], Axz=Ax(mz), Ayz=Ay(mz);
+                const Real piz=m_piActive[az];
+                // cosnt Real Axz=Ax(mz), Ayz=Ay(mz);
                 const Real minz  = softmin0(piz, m_minSmoothness);
                 const Real dminz = dsoftmin0(piz, m_minSmoothness);
                 // errx=|d|pix + dx*mu*softmin0(piz)   [erry similar]
@@ -3395,7 +3395,7 @@ updateJacobianForSliding(const Array_<Frictional>& frictional) {
                 // Fill in generic terms for unrelated constraints (not x,y,z)
                 for (ActiveIndex ai(0); ai<m_active.size(); ++ai) {
                     const MultiplierIndex mi = m_active[ai];
-                    const Real pii=m_piActive[ai];
+                    // const Real pii=m_piActive[ai];
                     const Real Axi=Ax(mi), Ayi=Ay(mi);
                     const Real s = ~dhat*Vec2(Axi,Ayi);
                     m_JacActive(ax,ai) = s*pix + mu*Axi*minz;
@@ -3415,7 +3415,7 @@ updateJacobianForSliding(const Array_<Frictional>& frictional) {
                 // Fill in generic terms for unrelated constraints (not x,y)
                 for (ActiveIndex ai(0); ai<m_active.size(); ++ai) {
                     const MultiplierIndex mi = m_active[ai];
-                    const Real pii=m_piActive[ai];
+                    // const Real pii=m_piActive[ai];
                     const Real Axi=Ax(mi), Ayi=Ay(mi);
                     const Real s = ~dhat*Vec2(Axi,Ayi);
                     m_JacActive(ax,ai) = s*pix + mu*Axi*N;
@@ -3496,12 +3496,12 @@ TimsBox::TimsBox() {
         const Inertia brickInertia(.1,.1,.1);
         const Real Radius = .02;
     #else
-        const Real RunTime=20;
-        const Real Stiffness = 1e6;
+        // const Real RunTime=20;
+        // const Real Stiffness = 1e6;
         const Real CoefRest = 0.3; 
-        const Real TargetVelocity = 3; // speed at which to match coef rest
-//        const Real Dissipation = (1-CoefRest)/TargetVelocity;
-        const Real Dissipation = 0.1;
+        // const Real TargetVelocity = 3; // speed at which to match coef rest
+        // const Real Dissipation = (1-CoefRest)/TargetVelocity;
+        // const Real Dissipation = 0.1;
         const Real mu_d = .5;
         const Real mu_s = 1.0;
         const Real mu_v = 0*0.1;
@@ -3672,7 +3672,7 @@ BouncingBalls::BouncingBalls() {
     const Real TransitionVelocity = .001;
 
     // Rubber
-    const Real rubber_density = 1100.;  // kg/m^3
+    // const Real rubber_density = 1100.;  // kg/m^3
     const Real rubber_young   = 0.01e9; // pascals (N/m)
     const Real rubber_poisson = 0.5;    // ratio
     const Real rubber_planestrain = 
@@ -3680,7 +3680,7 @@ BouncingBalls::BouncingBalls() {
     const Real rubber_dissipation = 0.1;
     const ContactMaterial rubber(rubber_planestrain,rubber_dissipation,0,0,0);
     // Nylon
-    const Real nylon_density = 1100.;  // kg/m^3
+    // const Real nylon_density = 1100.;  // kg/m^3
     const Real nylon_young   = 10*2.5e9;  // pascals (N/m)
     const Real nylon_poisson = 0.4;    // ratio
     const Real nylon_planestrain =
@@ -3819,7 +3819,7 @@ Pencil::Pencil() {
     //const Real mu_d=.5, mu_s=.5, mu_v=0;
 
     // Rubber
-    const Real rubber_density = 1100.;  // kg/m^3
+    // const Real rubber_density = 1100.;  // kg/m^3
     const Real rubber_young   = 0.01e9; // pascals (N/m)
     const Real rubber_poisson = 0.5;    // ratio
     const Real rubber_planestrain = 
@@ -3827,7 +3827,7 @@ Pencil::Pencil() {
     const Real rubber_dissipation = 0.1;
     const ContactMaterial rubber(rubber_planestrain,rubber_dissipation,0,0,0);
     // Nylon
-    const Real nylon_density = 1100.;  // kg/m^3
+    // const Real nylon_density = 1100.;  // kg/m^3
     const Real nylon_young   = 2.5e9;  // pascals (N/m)
     const Real nylon_poisson = 0.4;    // ratio
     const Real nylon_planestrain =

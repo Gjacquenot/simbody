@@ -315,10 +315,7 @@ private:
     mutable Array_<Real> m_offTimes;
 };
 
-static const Real Deg2Rad = (Real)SimTK_DEGREE_TO_RADIAN,
-                  Rad2Deg = (Real)SimTK_RADIAN_TO_DEGREE;
-
-
+static const Real Deg2Rad = (Real)SimTK_DEGREE_TO_RADIAN;
 
 static Real g = 9.8;
 

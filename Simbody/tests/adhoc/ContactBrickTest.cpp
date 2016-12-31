@@ -41,7 +41,7 @@ static const Real TimeScale = 1;
 static const Real FrameRate = 60;
 static const Real ReportInterval = TimeScale/FrameRate;
 static const Real ForceScale = .25;
-static const Real MomentScale = .5;
+// static const Real MomentScale = .5;
 
 
 class ForceArrowGenerator : public DecorationGenerator {
@@ -51,11 +51,11 @@ public:
     :   m_mbs(system), m_compliant(complCont) {}
 
     virtual void generateDecorations(const State& state, Array_<DecorativeGeometry>& geometry) override {
-        const Vec3 frcColors[] = {Red,Orange,Cyan};
-        const Vec3 momColors[] = {Blue,Green,Purple};
+        // const Vec3 frcColors[] = {Red,Orange,Cyan};
+        // const Vec3 momColors[] = {Blue,Green,Purple};
         m_mbs.realize(state, Stage::Velocity);
-        const SimbodyMatterSubsystem& matter = m_mbs.getMatterSubsystem();
-        const Real TextScale = m_mbs.getDefaultLengthScale()/10; // was .1
+        // const SimbodyMatterSubsystem& matter = m_mbs.getMatterSubsystem();
+        // const Real TextScale = m_mbs.getDefaultLengthScale()/10; // was .1
         m_mbs.realize(state, Stage::Dynamics);
         const Real KE=m_mbs.calcKineticEnergy(state), E=m_mbs.calcEnergy(state);
         const Real diss=m_compliant.getDissipatedEnergy(state);
@@ -94,7 +94,7 @@ public:
             geometry.push_back(momLine);
 
             ContactPatch patch;
-            const bool found = m_compliant.calcContactPatchDetailsById(state,id,patch);
+            /* const bool found = */ m_compliant.calcContactPatchDetailsById(state,id,patch);
             //cout << "patch for id" << id << " found=" << found << endl;
             //cout << "resultant=" << patch.getContactForce() << endl;
             //cout << "num details=" << patch.getNumDetails() << endl;

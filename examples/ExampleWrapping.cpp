@@ -205,19 +205,19 @@ int main() {
     Vec3 P(r*cos(uP)*sin(vP), r*sin(uP)*sin(vP), r*cos(vP));
     Vec3 Q(r*cos(uQ)*sin(vQ), r*sin(uQ)*sin(vQ), r*cos(vQ));
 
-    Vec3 r_OP = P-O;
-    Vec3 r_IQ = Q-I;
-    Vec3 tP = r_OP.normalize();
-    Vec3 tQ = r_IQ.normalize();
+    // Vec3 r_OP = P-O;
+    // Vec3 r_IQ = Q-I;
+    // Vec3 tP = r_OP.normalize();
+    // Vec3 tQ = r_IQ.normalize();
 
     int n = 6; // problem size
     Vector x(n), dx(n), Fx(n), xold(n);
     Matrix J(n,n);
 
     ContactGeometry::Sphere geom(r);
-//    r = 2;
-//    Vec3 radii(1,2,3);
-//    ContactGeometry::Ellipsoid geom(radii);
+    // r = 2;
+    // Vec3 radii(1,2,3);
+    // ContactGeometry::Ellipsoid geom(radii);
     Geodesic geod;
 
     // Create a dummy MultibodySystem for visualization purposes

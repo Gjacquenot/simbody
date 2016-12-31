@@ -409,7 +409,7 @@ void TasksMeasure<T>::Implementation::calcCachedValueVirtual
     const State& ms = modelState;
     const TaskSpace& p1 = m_tspace1;
 
-    const int mnq = ms.getNQ();
+    // const int mnq = ms.getNQ();
     const int mnu = ms.getNU();
     tau.resize(mnu);
 

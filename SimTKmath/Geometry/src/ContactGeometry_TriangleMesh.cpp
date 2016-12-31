@@ -677,7 +677,6 @@ Vec3 ContactGeometry::TriangleMesh::Impl::findNearestPointToFace
     const Real c = e1.normSqr();
     const Real d = ~e0*delta;
     const Real e = ~e1*delta;
-    const Real f = delta.normSqr();
     const Real det = a*c-b*b;
     Real s = b*e-c*d;
     Real t = b*d-a*e;

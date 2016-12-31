@@ -431,7 +431,7 @@ void calcQDotDot(
     const SBModelVars&          mv = sbs.getModelVars();
     const SBTreePositionCache&  pc = sbs.getTreePositionCache();
     const Vec3  w_FM_M     = Vec3(this->fromU(sbs.getU())[0], this->fromU(sbs.getU())[1], 0); // Angular velocity of M in F, exp. in M
-    const Vec3& v_FM       = this->fromUVec3(sbs.getU(),2); // linear velocity of M in F, expressed in M
+    // const Vec3& v_FM       = this->fromUVec3(sbs.getU(),2); // linear velocity of M in F, expressed in M
     const Vec3  w_FM_M_dot = Vec3(udot[0], udot[1], 0);
     const Vec3& v_FM_dot   = Vec3::getAs(&udot[2]);
 

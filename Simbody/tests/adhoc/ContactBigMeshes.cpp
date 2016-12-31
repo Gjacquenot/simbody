@@ -42,7 +42,7 @@ Array_<State> saveEm;
 
 static const Real ReportInterval = 0.01;
 static const Real ForceScale = 10;
-static const Real MomentScale = 20;
+// static const Real MomentScale = 20;
 
 class ForceArrowGenerator : public DecorationGenerator {
 public:
@@ -105,11 +105,11 @@ public:
                                +m_compliant.getDissipatedEnergy(state)
              << endl;
         const int ncont = m_compliant.getNumContactForces(state);
-        cout << "Num contacts: " << m_compliant.getNumContactForces(state) << endl;
-        for (int i=0; i < ncont; ++i) {
-            const ContactForce& force = m_compliant.getContactForce(state,i);
-            //cout << force;
-        }
+        cout << "Num contacts: " << ncont << endl;
+        // for (int i=0; i < ncont; ++i) {
+        //    const ContactForce& force = m_compliant.getContactForce(state,i);
+        //    cout << force;
+        //}
 
         saveEm.push_back(state);
     }
@@ -134,8 +134,8 @@ int main() {
     CompliantContactSubsystem contactForces(system, tracker);
     contactForces.setTrackDissipatedEnergy(true);
 
-    GeneralContactSubsystem OLDcontact(system);
-    const ContactSetIndex OLDcontactSet = OLDcontact.createContactSet();
+    // GeneralContactSubsystem OLDcontact(system);
+    // const ContactSetIndex OLDcontactSet = OLDcontact.createContactSet();
 
     contactForces.setTransitionVelocity(1e-3);
 
@@ -150,7 +150,7 @@ int main() {
 
     DecorativeMesh showFemur(femurTri.createPolygonalMesh());
     Array_<DecorativeLine> femurNormals;
-    const Real NormalLength = .02;
+    // const Real NormalLength = .02;
     //for (int fx=0; fx < femurTri.getNumFaces(); ++fx)
     //    femurNormals.push_back(
     //    DecorativeLine(femurTri.findCentroid(fx),

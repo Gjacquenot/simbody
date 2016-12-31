@@ -223,8 +223,8 @@ solve(int                                 phase,
     // Track total error for all included equations, and the error for just
     // those equations that are being enforced.
     bool converged = false;
-    Real normRMSall = Infinity, normRMSenf = Infinity;
-    Real prevNormRMSenf = NaN;
+    // Real normRMSall = Infinity, normRMSenf = Infinity;
+    // Real prevNormRMSenf = NaN;
 
     // Each sliding interval requires a complete restart, except that we 
     // continue to accumulate piTotal. We're done when we take a step interval 
@@ -313,11 +313,11 @@ solve(int                                 phase,
                 // Solve for deltaPi.
                 FactorQTZ fac(m_JacActive);
                 fac.solve(m_errActive, dpi);
-                const Real deltaNorm = dpi.norm();
 
                 #ifndef NDEBUG
+                const Real deltaNorm = dpi.norm();
                 printf("> NEWTON iter %d: errNorm=%g(v) -> deltaNorm=%g(pi)\n", 
-                       newtIter, errNorm, dpi.norm());
+                       newtIter, errNorm, deltaNorm);
                 //cout << "> JacActive=" << m_JacActive;
                 cout << "> piActive=" << m_piActive << endl;
                 cout << "> errActive=" << m_errActive << endl;
@@ -544,9 +544,9 @@ solve(int                                 phase,
             if (mustReleaseFriction) {
                 UniContactRT& rt = uniContact[worstFric];
                 const Array_<MultiplierIndex>& Fk = rt.m_Fk;
-                const MultiplierIndex          Nk = rt.m_Nk;
-                const ActiveIndex ax=m_mult2active[Fk[0]], ay=m_mult2active[Fk[1]], 
-                                  az=m_mult2active[Nk];
+                // const MultiplierIndex          Nk = rt.m_Nk;
+                // const ActiveIndex ax=m_mult2active[Fk[0]], ay=m_mult2active[Fk[1]], 
+                //                   az=m_mult2active[Nk];
 
                 SimTK_DEBUG2("switch worst fric %d from roll->impend err=%g\n", 
                        worstFric, worstFricValue);
@@ -571,7 +571,7 @@ solve(int                                 phase,
             if (rt.m_contactCond==UniOff || rt.m_frictionCond != Sliding)
                 continue;
             const Array_<MultiplierIndex>& Fk = rt.m_Fk;
-            const MultiplierIndex          Nk = rt.m_Nk;
+            // const MultiplierIndex          Nk = rt.m_Nk;
             assert(Fk.size()==2); //TODO: generalize
             // Velocity change db=[Ax Ay]*(pi+piE). TODO: D?
             Vec2 db(  multRowTimesActiveCol(A,Fk[0],m_active,m_piActive)
@@ -1125,8 +1125,7 @@ updateDirectionsAndCalcCurrentError
         }
 
         const Real mu = rt.m_effMu;
-        const ActiveIndex ax=m_mult2active[mx], ay=m_mult2active[my], 
-                          az=m_mult2active[mz];
+        const ActiveIndex ax=m_mult2active[mx], ay=m_mult2active[my]; 
         const Real pix = piActive[ax], piy=piActive[ay];
 
         // Applying the sign here makes sure pizE is negative.
@@ -1214,7 +1213,7 @@ updateJacobianForSliding(const Matrix& A,
                 const ActiveIndex az=m_mult2active[mz];
                 assert(az.isValid());
                 const Real piz=rt.m_sign*m_piActive[az];
-                const Real Axz=Ax(mz), Ayz=Ay(mz);
+                // const Real Axz=Ax(mz), Ayz=Ay(mz);
                 const Real minz  = softmin0(piz, m_minSmoothness);
                 const Real dminz = dsoftmin0(piz, m_minSmoothness);
                 // errx=|d|pix + dx*mu*(pizE+softmin0(piz))   [erry similar]
@@ -1227,7 +1226,7 @@ updateJacobianForSliding(const Matrix& A,
                 // Fill in generic terms for unrelated constraints (not x,y,z)
                 for (ActiveIndex ai(0); ai<m_active.size(); ++ai) {
                     const MultiplierIndex mi = m_active[ai];
-                    const Real pii=m_piActive[ai];
+                    // const Real pii=m_piActive[ai];
                     const Real Axi=Ax(mi), Ayi=Ay(mi);
                     const Real s = ~dhat*Vec2(Axi,Ayi);
                     m_JacActive(ax,ai) = s*pix + mu*Axi*(pizE+minz);
@@ -1249,7 +1248,7 @@ updateJacobianForSliding(const Matrix& A,
                 // Fill in generic terms for unrelated constraints (not x,y)
                 for (ActiveIndex ai(0); ai<m_active.size(); ++ai) {
                     const MultiplierIndex mi = m_active[ai];
-                    const Real pii=m_piActive[ai];
+                    // const Real pii=m_piActive[ai];
                     const Real Axi=Ax(mi), Ayi=Ay(mi);
                     const Real s = ~dhat*Vec2(Axi,Ayi);
                     m_JacActive(ax,ai) = s*pix + mu*Axi*pizE;

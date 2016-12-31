@@ -1499,7 +1499,7 @@ int SimbodyMatterSubsystemRep::realizeSubsystemDynamicsImpl(const State& s)  con
     SBStateDigest stateDigest(s, *this, Stage::Dynamics);
 
     // Get the Dynamics-stage cache; it was already allocated at Instance stage.
-    SBDynamicsCache& dc = stateDigest.updDynamicsCache();
+    /* SBDynamicsCache& dc = */ stateDigest.updDynamicsCache();
 
     // Probably nothing to do here.
     for (int i=0; i < (int)rbNodeLevels.size(); ++i)
@@ -3008,7 +3008,7 @@ calcBiasForAccelerationConstraints(const State& s,
         const int ma = includeA ? accOnlySeg.length : 0;
 
         const ConstraintImpl& crep = constraints[cx]->getImpl();
-        const int ncb = crep.getNumConstrainedBodies();
+        // const int ncb = crep.getNumConstrainedBodies();
 
         // Now fill in coriolis accelerations. If the Ancestor is Ground
         // we're just reordering. If it isn't Ground we have to transform
@@ -3774,7 +3774,7 @@ calcConstraintAccelerationErrors
 // Note that prescribed udot=udot(t,q,u) is not dealt with here because it does 
 // not involve a state change.
 bool SimbodyMatterSubsystemRep::prescribeQ(State& s) const {
-    const SBModelCache&    mc = getModelCache(s);
+    // const SBModelCache&    mc = getModelCache(s);
     const SBInstanceCache& ic = getInstanceCache(s);
 
     const int npq = ic.getTotalNumPresQ();
@@ -3798,7 +3798,7 @@ bool SimbodyMatterSubsystemRep::prescribeQ(State& s) const {
 }
 
 bool SimbodyMatterSubsystemRep::prescribeU(State& s) const {
-    const SBModelCache&    mc = getModelCache(s);
+    // const SBModelCache&    mc = getModelCache(s);
     const SBInstanceCache& ic = getInstanceCache(s);
 
     const int npu = ic.getTotalNumPresU();
@@ -4202,8 +4202,8 @@ int SimbodyMatterSubsystemRep::projectQ
     const bool localOnly = opts.isOptionSet(ProjectOptions::LocalOnly);
     // We are permitted to use an out-of-date Jacobian for projection unless
     // this is set. TODO: always using full Newton at the moment.
-    const bool forceFullNewton =
-        opts.isOptionSet(ProjectOptions::ForceFullNewton);
+    // const bool forceFullNewton =
+    //  opts.isOptionSet(ProjectOptions::ForceFullNewton);
 
     // Get problem dimensions.
     const SBInstanceCache& ic = getInstanceCache(s);
@@ -4745,12 +4745,12 @@ int SimbodyMatterSubsystemRep::projectU
     const bool localOnly = opts.isOptionSet(ProjectOptions::LocalOnly);
     // We are permitted to use an out-of-date Jacobian for projection unless
     // this is set. TODO: always using modified Newton at the moment.
-    const bool forceFullNewton =
-        opts.isOptionSet(ProjectOptions::ForceFullNewton);
+    // const bool forceFullNewton =
+    //    opts.isOptionSet(ProjectOptions::ForceFullNewton);
 
     // Get problem dimensions.
     const SBInstanceCache& ic = getInstanceCache(s);
-    const int nq       = getNQ(s);
+    // const int nq       = getNQ(s);
     const int nu       = getNU(s);
     const int nfu      = ic.getTotalNumFreeU();
     bool hasPrescribedMotion = (nfu != nu);
@@ -4977,8 +4977,8 @@ void SimbodyMatterSubsystemRep::calcTreeForwardDynamicsOperator(
 
     const SBModelCache&         mc  = sbs.getModelCache();
     const SBInstanceCache&      ic  = sbs.getInstanceCache();
-    const SBTreePositionCache&  tpc = sbs.getTreePositionCache();
-    const SBTreeVelocityCache&  tvc = sbs.getTreeVelocityCache();
+    // const SBTreePositionCache&  tpc = sbs.getTreePositionCache();
+    // const SBTreeVelocityCache&  tvc = sbs.getTreeVelocityCache();
     const SBDynamicsCache&      dc  = sbs.getDynamicsCache();
 
     // Ensure that output arguments have been allocated properly.
@@ -5100,7 +5100,7 @@ void SimbodyMatterSubsystemRep::calcLoopForwardDynamicsOperator
     const int mNonholo = getNumNonholonomicConstraintEquationsInUse(s);
     const int mAccOnly = getNumAccelerationOnlyConstraintEquationsInUse(s);
     const int m        = mHolo+mNonholo+mAccOnly;
-    const int nq       = getNQ(s);
+    // const int nq       = getNQ(s);
     const int nu       = getNU(s);
 
     multipliers.resize(m);
@@ -6050,8 +6050,8 @@ findConstraintForces(const State&           s,
 
     // Set all forces to zero here; we'll only update the ones that are
     // affected by some active constraint.
-    bodyForcesInG.resize(getNumBodies()); bodyForcesInG.setToZero();
-    mobilityForces.resize(getNU(s));      mobilityForces.setToZero();
+    bodyForcesInG.resize(nb);  bodyForcesInG.setToZero();
+    mobilityForces.resize(nu); mobilityForces.setToZero();
 
     // Loop over all enabled constraints, get their forces, and
     // accumulate the results in the global problem return vectors.

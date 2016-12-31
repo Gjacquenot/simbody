@@ -607,7 +607,6 @@ int main()
         smallConjA3.getSubMat<2,2>(0,0)*smallConjA3.getSubMat<2,2>(0,0).invert();
 
     try {
-    const double ddd[] = { 11, 12, 13, 14, 15, 16 }; 
     const float fddd[] = { 11, 12, 13, 14, 15, 16 }; 
     const complex<float> ccc[] = {  complex<float>(1.,2.),  
                                     complex<float>(3.,4.),

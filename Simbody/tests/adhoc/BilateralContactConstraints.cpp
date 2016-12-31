@@ -50,8 +50,8 @@ public:
     void generateDecorations(const State&                state, 
                              Array_<DecorativeGeometry>& geometry) override
     {
-        const SimbodyMatterSubsystem& matter = m_mbs.getMatterSubsystem();
-        const Real TextScale = m_mbs.getDefaultLengthScale()/10; // was .1
+        // const SimbodyMatterSubsystem& matter = m_mbs.getMatterSubsystem();
+        // const Real TextScale = m_mbs.getDefaultLengthScale()/10; // was .1
         m_mbs.realize(state, Stage::Dynamics);
         const Real KE=m_mbs.calcKineticEnergy(state), E=m_mbs.calcEnergy(state);
         DecorativeText energy; energy.setIsScreenText(true);
@@ -159,7 +159,7 @@ int main() {
     bodyInfo.addDecoration(Transform(), 
         DecorativeBrick(hdim).setColor(Orange).setOpacity(.3));
 
-    Real pmass = .1;
+    // Real pmass = .1;
     Vec3 phdim(5,.5,2);
     Body::Rigid platformBody(MassProperties(10*mass,
         Vec3(0), UnitInertia::ellipsoid(phdim))); 

@@ -129,7 +129,7 @@ void testRandomPoints() {
         int numPoints = random.getIntValue()+1;
         Vec3 offs = Test::randDouble()*1000*Test::randVec3();
         fVec3 foffs((float)offs[0],(float)offs[1],(float)offs[2]);
-        Real scale = offs.norm();
+        // Real scale = offs.norm();
 
         for (int p=0; p<numPoints; ++p) {
             Vec3  pt(Test::randVec3());
@@ -158,7 +158,7 @@ void testRandomPoints() {
 
         // The single and double precision spheres should be the same size
         // to within a small error. The Ritter sphere is more sensitive.
-        const float frac = std::max((float)scale,1.f)*NTraits<float>::getSqrtEps();
+        // const float frac = std::max((float)scale,1.f)*NTraits<float>::getSqrtEps();
         
         //if (!Test::numericallyEqual((float)bs.getRadius(), fbs.getRadius(), 1, frac))
         //    printf("bs=%g fbs=%g\n", bs.getRadius(), fbs.getRadius());
@@ -269,7 +269,7 @@ void testCollocatedPoints() {
         int numPoints = random.getIntValue()+1;
         Vec3 offs = Test::randDouble()*1000*Test::randVec3();
         fVec3 foffs((float)offs[0],(float)offs[1],(float)offs[2]);
-        Real scale = offs.norm();
+        // Real scale = offs.norm();
 
         for (int p=0; p<numPoints; ++p) {
             Vec3  pt(offs);

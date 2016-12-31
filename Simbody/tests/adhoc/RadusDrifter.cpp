@@ -40,10 +40,7 @@ static const Real Deg2Rad = (Real)SimTK_DEGREE_TO_RADIAN,
 
 static const Transform GroundFrame;
 
-static const Real m = 1;   // kg
 static const Real g = 9.8; // meters/s^2; apply in –y direction
-static const Real d = 0.5; // meters
-
 
 void ff(Vector& v) {
     v = 23.;

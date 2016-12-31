@@ -94,7 +94,7 @@ void ExplicitEulerIntegratorRep::createInterpolatedState(Real t) {
 // example after we have localized an event trigger to an interval tLow:tHigh
 // where tHigh < tAdvanced.
 void ExplicitEulerIntegratorRep::backUpAdvancedStateByInterpolation(Real t) {
-    const System& system   = getSystem();
+    // const System& system   = getSystem();
     State& advanced = updAdvancedState();
 
     assert(getPreviousTime() <= t && t <= advanced.getTime());

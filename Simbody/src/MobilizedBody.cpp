@@ -76,7 +76,7 @@ lockAt(State& s, Real value, Motion::Level level) const
 void MobilizedBody::
 lockAt(State& s, const Vector& value, Motion::Level level) const
 {   
-    const MobilizedBodyImpl& impl = getImpl();
+    // const MobilizedBodyImpl& impl = getImpl();
     if (value.hasContiguousData()) {
         getImpl().lockAt(s,value.size(),&value[0],level); 
         return;
@@ -1678,7 +1678,7 @@ void MobilizedBody::GimbalImpl::calcDecorativeGeometryAndAppendImpl
     // placement on the body, which might not be until Instance stage.
     if (stage == Stage::Instance && getMyMatterSubsystemRep().getShowDefaultGeometry()) 
     {
-        const SimbodyMatterSubsystemRep& matterRep = getMyMatterSubsystemRep();
+        // const SimbodyMatterSubsystemRep& matterRep = getMyMatterSubsystemRep();
         const Transform& X_PMb = getInboardFrame(s);
         const Transform& X_BM  = getOutboardFrame(s);
 
@@ -1934,7 +1934,7 @@ void MobilizedBody::BallImpl::calcDecorativeGeometryAndAppendImpl
     // the geometry on the body until we know the parent and child mobilizer frame
     // placement on the body, which might not be until Instance stage.
     if (stage == Stage::Instance && getMyMatterSubsystemRep().getShowDefaultGeometry()) {
-        const SimbodyMatterSubsystemRep& matterRep = getMyMatterSubsystemRep();
+        // const SimbodyMatterSubsystemRep& matterRep = getMyMatterSubsystemRep();
         const Transform& X_PMb = getInboardFrame(s);
         const Transform& X_BM  = getOutboardFrame(s);
 
@@ -2109,7 +2109,7 @@ void MobilizedBody::EllipsoidImpl::calcDecorativeGeometryAndAppendImpl
     // stage.
     if (stage == Stage::Instance && getMyMatterSubsystemRep().getShowDefaultGeometry()) 
     {
-        const SimbodyMatterSubsystemRep& matterRep = getMyMatterSubsystemRep();
+        // const SimbodyMatterSubsystemRep& matterRep = getMyMatterSubsystemRep();
         const Transform& X_PMb = getInboardFrame(s);
         const Transform& X_BM  = getOutboardFrame(s);
 

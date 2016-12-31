@@ -176,11 +176,11 @@ public:
 
         // TODO: check this formula
         // Mean absolute velocity should be (8*v2bar/3PI)^1/2
-        Real expectedMeanAbsVelocity = std::sqrt(
-            8.0 * expectedMeanVelocitySquared / (degreesOfFreedom * SimTK_PI) );
-        Real measuredMeanAbsVelocity = 
-            reporter->sumAbsVelocity / reporter->eventCount;
-       // ASSERT(std::abs(1.0 - measuredMeanAbsVelocity/expectedMeanAbsVelocity) < 0.2);
+        // Real expectedMeanAbsVelocity = std::sqrt(
+        //    8.0 * expectedMeanVelocitySquared / (degreesOfFreedom * SimTK_PI) );
+        // Real measuredMeanAbsVelocity = 
+        //    reporter->sumAbsVelocity / reporter->eventCount;
+        // ASSERT(std::abs(1.0 - measuredMeanAbsVelocity/expectedMeanAbsVelocity) < 0.2);
     }
 
     MultibodySystem& updSystem() {return system;}

@@ -716,7 +716,7 @@ void MultibodyGraphMaker::breakLoops() {
         // since we're adding a new body -- don't reuse them.)
         const int sx = splitBody(cx);
         Body& parent = updBody(px);
-        Body& child  = updBody(cx);
+        /* Body& child  = */ updBody(cx);
         Body& slave  = updBody(sx);
 
         // Mobilize the slave body.

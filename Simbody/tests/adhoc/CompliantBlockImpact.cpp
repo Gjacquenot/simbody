@@ -48,8 +48,8 @@ Array_<State> saveEm;
 
 static const Real TimeScale = 1;
 static const Real FrameRate = GenerateAnimation ? 6000 : 60;
-static const Real ForceScale = .25;
-static const Real MomentScale = .5;
+// static const Real ForceScale = .25;
+// static const Real MomentScale = .5;
 const Vec3 BrickColor    = Blue;
 const Vec3 SphereColor   = Red;
 
@@ -78,15 +78,16 @@ public:
         m_inContact(false), m_hasCompressionEnded(false) {}
 
     virtual void generateDecorations(const State& state, Array_<DecorativeGeometry>& geometry) override {
-        const Vec3 frcColors[] = {Red,Orange,Cyan};
-        const Vec3 momColors[] = {Blue,Green,Purple};
+        //const Vec3 frcColors[] = {Red,Orange,Cyan};
+        //const Vec3 momColors[] = {Blue,Green,Purple};
         m_mbs.realize(state, Stage::Velocity);
-        const SimbodyMatterSubsystem& matter = m_mbs.getMatterSubsystem();
-        const Real TextScale = 3./16.;
+        //const SimbodyMatterSubsystem& matter = m_mbs.getMatterSubsystem();
+        //const Real TextScale = 3./16.;
         m_mbs.realize(state, Stage::Dynamics);
-        const Real KE=m_mbs.calcKineticEnergy(state), E=m_mbs.calcEnergy(state);
+        //const Real KE=m_mbs.calcKineticEnergy(state);
+        const Real E=m_mbs.calcEnergy(state);
         const Real diss=m_compliant.getDissipatedEnergy(state);
-        const Real PE=m_mbs.calcPotentialEnergy(state);
+        //const Real PE=m_mbs.calcPotentialEnergy(state);
         DecorativeText txt; 
         //txt.setIsScreenText(true);
         //txt.setScale(TextScale);
@@ -123,13 +124,13 @@ public:
         for (int i=0; i < ncont; ++i) {
             const ContactForce& force = m_compliant.getContactForce(state,i);
             const ContactId     id    = force.getContactId();
-            const Vec3&         pt    = force.getContactPoint();
+            //const Vec3&         pt    = force.getContactPoint();
             const Vec3& frc = force.getForceOnSurface2()[1];
             const Vec3& mom = force.getForceOnSurface2()[0];
             Real  frcMag = frc.norm(), momMag=mom.norm();
             const UnitVec3 frcDir(frc/frcMag, true);
             const UnitVec3 momDir(mom/momMag, true);
-            const Vec3 offs = .1*frcDir; // shift up to clear ground
+            //const Vec3 offs = .1*frcDir; // shift up to clear ground
             //int frcThickness = 2, momThickness = 2;
             //Real frcScale = ForceScale, momScale = ForceScale;
             //while (frcMag > /*10*/1000000)
@@ -149,7 +150,7 @@ public:
 
 
             ContactPatch patch;
-            const bool found = m_compliant.calcContactPatchDetailsById(state,id,patch);
+            /* const bool found = */ m_compliant.calcContactPatchDetailsById(state,id,patch);
             //cout << "patch for id" << id << " found=" << found << endl;
             //cout << "resultant=" << patch.getContactForce() << endl;
             //cout << "num details=" << patch.getNumDetails() << endl;
@@ -159,8 +160,8 @@ public:
                 const Vec3& pt = detail.getContactPoint();
                 //geometry.push_back(DecorativePoint(pt).setColor(Purple));
 
-                const Vec3& force = detail.getForceOnSurface2();
-                const Real forceMag = force.norm();
+                //const Vec3& force = detail.getForceOnSurface2();
+                //const Real forceMag = force.norm();
                 //const UnitVec3 forceDir(force/forceMag, true);
                 //DecorativeLine frcLine(pt, pt+std::log10(forceMag)*forceDir);
                 //frcLine.setColor(Black);

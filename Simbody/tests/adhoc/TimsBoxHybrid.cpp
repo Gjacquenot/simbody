@@ -49,7 +49,7 @@ using namespace SimTK;
 // as they should be. You should see nothing but exact zeroes print out for
 // second and subsequent runs.
 //#define TEST_REPEATABILITY
-static const int NTries=3;
+// static const int NTries=3;
 
 
 // This is the continuous stiction model used in Simbody's compliant contact
@@ -150,7 +150,7 @@ public:
     // point onto the contact plane. This will be used the next time stiction
     // is enabled. Requires state realized to Position stage.
     void initializeForStiction(const State& s) {
-        const Real h = findContactPointInP(s, m_contactPointInP);
+        /* const Real h = */ findContactPointInP(s, m_contactPointInP);
     }
 
     bool isInContact(const State& s) const
@@ -404,7 +404,7 @@ public:
         const Real k    = m_material.getStiffness(), 
                    c    = m_material.getDissipation(),
                    mu_d = m_material.getDynamicFriction(),
-                   mu_s = m_material.getStaticFriction(),
+                   // mu_s = m_material.getStaticFriction(),
                    mu_v = m_material.getViscousFriction();
 
         info.f_HCb = Vec3(0);
@@ -1093,9 +1093,9 @@ int main(int argc, char** argv) {
     #else
         const Real RunTime=20;
         const Real Stiffness = 1e6;
-        const Real CoefRest = 0; 
-        const Real TargetVelocity = 3; // speed at which to match coef rest
-//        const Real Dissipation = (1-CoefRest)/TargetVelocity;
+        // const Real CoefRest = 0; 
+        // const Real TargetVelocity = 3; // speed at which to match coef rest
+        // const Real Dissipation = (1-CoefRest)/TargetVelocity;
         const Real Dissipation = .1;
         const Real mu_d = .5;
         const Real mu_s = .8;
@@ -1516,7 +1516,7 @@ selectActiveConstraints(State& state, Real vtol) const {
 void MyUnilateralConstraintSet::
 findActiveCandidates(State& s, const MyElementSubset& candidates) const
 {
-    const int ReviseNormalNIters = 6;
+    // const int ReviseNormalNIters = 6;
     showConstraintStatus(s, "ENTER findActiveCandidates()");
 
     SimTK_DEBUG3(

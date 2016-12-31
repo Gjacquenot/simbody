@@ -199,8 +199,8 @@ public:
         // Tangent points in Ground.
         Vec3 tptA, tptB;
         getTangentPoints(state, tptA, tptB);
-        const Vec3 tptA_W = W.findStationAtGroundPoint(state, tptA);
-        const Vec3 tptB_W = W.findStationAtGroundPoint(state, tptB);
+        // const Vec3 tptA_W = W.findStationAtGroundPoint(state, tptA);
+        // const Vec3 tptB_W = W.findStationAtGroundPoint(state, tptB);
 
         UnitVec3 a2w(tptA - iptA); // from insertion to tangent point
         UnitVec3 b2w(tptB - iptB); //   "

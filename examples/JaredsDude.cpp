@@ -81,7 +81,7 @@ public:
         const Real KeyFactor = 0.05; 
 
         const UnitVec3& down = m_gravity.getDownDirection(state);
-        bool control = (modifiers & Visualizer::InputListener::ControlIsDown) != 0;
+        // bool control = (modifiers & Visualizer::InputListener::ControlIsDown) != 0;
         bool gotOne = false;
         switch(key) {
         case Visualizer::InputListener::KeyLeftArrow:

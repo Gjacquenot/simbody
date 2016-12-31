@@ -68,7 +68,7 @@ static const Real TimeScale = 1;
 static const Real FrameRate = 30;
 static const Real ReportInterval = TimeScale/FrameRate;
 static const Real ForceScale = .25;
-static const Real MomentScale = .5;
+// static const Real MomentScale = .5;
 
 
 class ForceArrowGenerator : public DecorationGenerator {
@@ -107,7 +107,7 @@ public:
             geometry.push_back(momLine);
 
             ContactPatch patch;
-            const bool found = m_compliant.calcContactPatchDetailsById(state,id,patch);
+            /* const bool found = */ m_compliant.calcContactPatchDetailsById(state,id,patch);
             //cout << "patch for id" << id << " found=" << found << endl;
             //cout << "resultant=" << patch.getContactForce() << endl;
             //cout << "num details=" << patch.getNumDetails() << endl;
@@ -155,11 +155,11 @@ public:
                                +m_compliant.getDissipatedEnergy(state)
              << endl;
         const int ncont = m_compliant.getNumContactForces(state);
-        cout << "Num contacts: " << m_compliant.getNumContactForces(state) << endl;
-        for (int i=0; i < ncont; ++i) {
-            const ContactForce& force = m_compliant.getContactForce(state,i);
-            //cout << force;
-        }
+        cout << "Num contacts: " << ncont << endl;
+        // for (int i=0; i < ncont; ++i) {
+        //    const ContactForce& force = m_compliant.getContactForce(state,i);
+        //    cout << force;
+        //}
         saveEm.push_back(state);
     }
 private:
@@ -212,8 +212,8 @@ int main() {
     contactForces.setTrackDissipatedEnergy(true);
     contactForces.setTransitionVelocity(1e-3);
 
-    GeneralContactSubsystem OLDcontact(system);
-    const ContactSetIndex OLDcontactSet = OLDcontact.createContactSet();
+    // GeneralContactSubsystem OLDcontact(system);
+    // const ContactSetIndex OLDcontactSet = OLDcontact.createContactSet();
 
     //makeCube(1, pyramidMesh);
     //makeTetrahedron(1, pyramidMesh);

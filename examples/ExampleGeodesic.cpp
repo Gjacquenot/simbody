@@ -35,8 +35,7 @@ using std::sin;
 using std::cout;
 using std::endl;
 
-const Real vizInterval = 1/30.; // set to 1/30. to vizualize shooting
-
+// const Real vizInterval = 1/30.; // set to 1/30. to vizualize shooting
 
 class VizPeriodicReporter : public PeriodicEventReporter {
 public:
@@ -124,8 +123,8 @@ int main() {
 
     // Create geometry
     Real r            =    0.5;
-    //ContactGeometry::Sphere geom(r);
-//    ContactGeometry::Cylinder geom(r);
+    // ContactGeometry::Sphere geom(r);
+    // ContactGeometry::Cylinder geom(r);
     ContactGeometry::Torus geom(2*r, r);
 
     Vec3 radii(0.2,0.4,0.6);
@@ -135,11 +134,11 @@ int main() {
     //startLength=5;
 
 
-    Real phiP        =    0.0*Pi;
-    Real thetaP        =    0.0*Pi;
+    Real phiP       =   0.0*Pi;
+    Real thetaP     =   0.0*Pi;
 
-    Real phiQ        =   0.0*Pi;
-    Real thetaQ        =   1.2*Pi;
+    Real phiQ       =   0.0*Pi;
+    Real thetaQ     =   1.2*Pi;
 
     Real heightP    =   0.5;
     Real heightQ    =  -0.5;
@@ -151,7 +150,7 @@ int main() {
     Vec3 O(-2, 0,  heightP);
     Vec3 I(-2, 0,  heightQ);
 
-    // move points off surface for testing
+     // move points off surface for testing
      Q(0) -= r/2;
      Q(1) -= -r*0.5;
      P(1) -= r*0.5;
@@ -173,7 +172,7 @@ int main() {
     UnitVec3 e_OP(r_OP);
     UnitVec3 e_IQ(r_IQ);
 
-    Vec3 r_PQ = Q - P;
+    // Vec3 r_PQ = Q - P;
 
     int n = 2; // problem size
     Vector x(n), dx(n), Fx(n), xold(n);
@@ -223,7 +222,7 @@ int main() {
     SimbodyMatterSubsystem matter(dummySystem);
 
 
-//    matter.updGround().addBodyDecoration(Transform(), DecorativeEllipsoid(radii)
+    // matter.updGround().addBodyDecoration(Transform(), DecorativeEllipsoid(radii)
     matter.updGround().addBodyDecoration(Transform(), geom.createDecorativeGeometry()
             .setColor(Gray)
             .setOpacity(0.5)

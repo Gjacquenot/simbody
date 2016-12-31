@@ -207,7 +207,7 @@ void testCoordinateCoupler1() {
     MultibodySystem system1;
     SimbodyMatterSubsystem matter1(system1);
     createGimbalSystem(system1);
-    MobilizedBody& first = matter1.updMobilizedBody(MobilizedBodyIndex(1));
+    /* MobilizedBody& first = */ matter1.updMobilizedBody(MobilizedBodyIndex(1));
     std::vector<MobilizedBodyIndex> bodies(1);
     std::vector<MobilizerQIndex> coordinates(1);
     bodies[0] = MobilizedBodyIndex(1);
@@ -247,7 +247,7 @@ void testCoordinateCoupler2() {
     MultibodySystem system;
     SimbodyMatterSubsystem matter(system);
     createCylinderSystem(system);
-    MobilizedBody& first = matter.updMobilizedBody(MobilizedBodyIndex(1));
+    /* MobilizedBody& first = */ matter.updMobilizedBody(MobilizedBodyIndex(1));
     std::vector<MobilizedBodyIndex> mobilizers(3);
     std::vector<MobilizerQIndex>    coordinates(3);
     mobilizers[0]  = MobilizedBodyIndex(1);
@@ -283,7 +283,7 @@ void testCoordinateCoupler2() {
         integ.stepTo(10.0);
         const State& istate = integ.getState();
         system.realize(istate, Stage::Acceleration);
-        const Vector& u = istate.getU();
+        // const Vector& u = istate.getU();
         const Real energy = system.calcEnergy(istate);
         const Real power  = coupler.calcPower(istate);
 
@@ -313,7 +313,7 @@ void testCoordinateCoupler3() {
     MultibodySystem system;
     SimbodyMatterSubsystem matter(system);
     createBallSystem(system);
-    MobilizedBody& first = matter.updMobilizedBody(MobilizedBodyIndex(1));
+    /* MobilizedBody& first = */ matter.updMobilizedBody(MobilizedBodyIndex(1));
     std::vector<MobilizedBodyIndex> bodies(3);
     std::vector<MobilizerQIndex> coordinates(3);
     bodies[0] = MobilizedBodyIndex(1);
@@ -371,7 +371,7 @@ void testSpeedCoupler1() {
     MultibodySystem system1;
     SimbodyMatterSubsystem matter1(system1);
     createGimbalSystem(system1);
-    MobilizedBody& first = matter1.updMobilizedBody(MobilizedBodyIndex(1));
+    /* MobilizedBody& first = */ matter1.updMobilizedBody(MobilizedBodyIndex(1));
     std::vector<MobilizedBodyIndex> bodies(1);
     std::vector<MobilizerUIndex> speeds(1);
     bodies[0] = MobilizedBodyIndex(1);
@@ -406,7 +406,7 @@ void testSpeedCoupler2() {
     MultibodySystem system;
     SimbodyMatterSubsystem matter(system);
     createGimbalSystem(system);
-    MobilizedBody& first = matter.updMobilizedBody(MobilizedBodyIndex(1));
+    /* MobilizedBody& first = */ matter.updMobilizedBody(MobilizedBodyIndex(1));
     std::vector<MobilizedBodyIndex> bodies(3);
     std::vector<MobilizerUIndex> speeds(3);
     bodies[0] = MobilizedBodyIndex(1);
@@ -466,7 +466,7 @@ void testSpeedCoupler3() {
     MultibodySystem system;
     SimbodyMatterSubsystem matter(system);
     createCylinderSystem(system);
-    MobilizedBody& first = matter.updMobilizedBody(MobilizedBodyIndex(1));
+    /* MobilizedBody& first = */ matter.updMobilizedBody(MobilizedBodyIndex(1));
     std::vector<MobilizedBodyIndex> ubody(2), qbody(1);
     std::vector<MobilizerUIndex> uindex(2);
     std::vector<MobilizerQIndex> qindex(1);
@@ -510,7 +510,7 @@ void testSpeedCoupler3() {
         const State& istate = integ.getState();
         system.realize(istate, Stage::Acceleration);
         const Real energy = system.calcEnergy(istate);
-        const Real power = powMeas.getValue(istate);
+        // const Real power = powMeas.getValue(istate);
         const Real work =  workMeas.getValue(istate);
 
         args[0] = matter.getMobilizedBody(ubody[0]).getOneU(state, uindex[0]);
@@ -569,7 +569,7 @@ void testPrescribedMotion1() {
         const State& istate = integ.getState();
         system.realize(istate, Stage::Acceleration);
         const Real energy = system.calcEnergy(istate);
-        const Real power = powMeas.getValue(istate);
+        // const Real power = powMeas.getValue(istate);
         const Real work =  workMeas.getValue(istate);
 
         Vector args(1, istate.getTime());
@@ -640,9 +640,9 @@ void testPrescribedMotion2() {
         const State& istate = integ.getState();
         system.realize(istate, Stage::Acceleration);
         const Real energy = system.calcEnergy(istate);
-        const Real power1 = powMeas1.getValue(istate);
+        // const Real power1 = powMeas1.getValue(istate);
         const Real work1 =  workMeas1.getValue(istate);
-        const Real power2 = powMeas2.getValue(istate);
+        // const Real power2 = powMeas2.getValue(istate);
         const Real work2 =  workMeas2.getValue(istate);
 
         Vector args(1, istate.getTime());

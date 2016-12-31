@@ -158,8 +158,6 @@ calcDecorativeGeometryAndAppendVirtual
     if (   stage == Stage::Instance 
         && getMyMatterSubsystemRep().getShowDefaultGeometry()) 
     {
-        const SimbodyMatterSubsystemRep& matterRep = getMyMatterSubsystemRep();
-
         const MobilizedBodyIndex planeMBId = 
             getMobilizedBodyIndexOfConstrainedBody(m_surfaceBody_S);
         const MobilizedBodyIndex followerMBId = 

@@ -356,7 +356,7 @@ calcPotentialEnergy(const State& state) const {
     const Real q = mb.getOneQ(state, m_whichQ);
     const std::pair<Real,Real>& params = getParams(state);
     const Real k = params.first, q0 = params.second;
-    const Real frc = -k*(q-q0);
+    // const Real frc = -k*(q-q0);
     return k*square(q-q0)/2;
 }
 
@@ -1037,7 +1037,7 @@ void Force::UniformGravityImpl::calcForce(const State& state, Vector_<SpatialVec
 
     if (nParticles) {
         const Vector& m = matter.getAllParticleMasses(state);
-        const Vector_<Vec3>& loc_G = matter.getAllParticleLocations(state);
+        // const Vector_<Vec3>& loc_G = matter.getAllParticleLocations(state);
         for (int i=0; i < nParticles; ++i) {
             particleForces[i] += g * m[i];
         }

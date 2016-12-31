@@ -154,8 +154,8 @@ private:
 };
 
 // Limit single-step direction change to 30 degrees.
-static const Real CosMaxSlidingDirChange = std::cos(Pi/6); 
-static const Real MaxRollingTangVel   = 1.0e-1; //Can't roll above this velocity.
+// static const Real CosMaxSlidingDirChange = std::cos(Pi/6); 
+// static const Real MaxRollingTangVel   = 1.0e-1; //Can't roll above this velocity.
 
 
 //==============================================================================
@@ -181,7 +181,7 @@ public:
 
         const SimbodyMatterSubsystem& matter = mbs.getMatterSubsystem();
         const int nUniContacts  = matter.getNumUnilateralContacts();
-        const int nLtdFrictions = matter.getNumStateLimitedFrictions();
+        // const int nLtdFrictions = matter.getNumStateLimitedFrictions();
 
         for (UnilateralContactIndex ux(0); ux < nUniContacts; ++ux) {
             const UnilateralContact& contact = matter.getUnilateralContact(ux);
@@ -374,7 +374,7 @@ int main(int argc, char** argv) {
         const Real RunTime=16;  // Tim's time
         const Real Accuracy = 1e-4;
     #else
-        const Real RunTime=20;
+        // const Real RunTime=20;
         const Real Accuracy = 1e-2;
     #endif
 
@@ -392,7 +392,7 @@ int main(int argc, char** argv) {
     sxe.setDefaultImpactMinCORVelocity(mbs.getCaptureVelocity()); //TODO
     sxe.setDefaultFrictionTransitionVelocity(mbs.getTransitionVelocity());
 
-    const SimbodyMatterSubsystem&    matter = mbs.getMatterSubsystem();
+    // const SimbodyMatterSubsystem&    matter = mbs.getMatterSubsystem();
 
     Visualizer viz(mbs);
     viz.setShowSimTime(true);
@@ -451,7 +451,8 @@ int main(int argc, char** argv) {
         
     Array_<State> states; states.reserve(10000);
 
-    int nSteps=0, nStepsWithEvent = 0;
+    int nSteps = 0;
+    // int  nStepsWithEvent = 0;
 
     const double startReal = realTime();
     const double startCPU = cpuTime();
@@ -570,12 +571,12 @@ TimsBox::TimsBox() {
         const Inertia brickInertia(.1,.1,.1);
         const Real Radius = .02;
     #else
-        const Real RunTime=20;
-        const Real Stiffness = 1e6;
+        // const Real RunTime=20;
+        // const Real Stiffness = 1e6;
         const Real CoefRest = 0.4; 
-        const Real TargetVelocity = 3; // speed at which to match coef rest
-//        const Real Dissipation = (1-CoefRest)/TargetVelocity;
-        const Real Dissipation = 0.1;
+        // const Real TargetVelocity = 3; // speed at which to match coef rest
+        // const Real Dissipation = (1-CoefRest)/TargetVelocity;
+        // const Real Dissipation = 0.1;
         const Real mu_d = .4;
         const Real mu_s = .8;
         const Real mu_v = 0*0.1;
@@ -761,7 +762,7 @@ BouncingBalls::BouncingBalls() {
     const Real TransitionVelocity = .001;
 
     // Rubber
-    const Real rubber_density = 1100.;  // kg/m^3
+    // const Real rubber_density = 1100.;  // kg/m^3
     const Real rubber_young   = 0.01e9; // pascals (N/m)
     const Real rubber_poisson = 0.5;    // ratio
     const Real rubber_planestrain = 
@@ -769,7 +770,7 @@ BouncingBalls::BouncingBalls() {
     const Real rubber_dissipation = 0.1;
     const ContactMaterial rubber(rubber_planestrain,rubber_dissipation,0,0,0);
     // Nylon
-    const Real nylon_density = 1100.;  // kg/m^3
+    // const Real nylon_density = 1100.;  // kg/m^3
     const Real nylon_young   = 10*2.5e9;  // pascals (N/m)
     const Real nylon_poisson = 0.4;    // ratio
     const Real nylon_planestrain =
@@ -907,7 +908,7 @@ Pencil::Pencil() {
     setDefaultLengthScale(PencilHLength);
 
     // Rubber
-    const Real rubber_density = 1100.;  // kg/m^3
+    // const Real rubber_density = 1100.;  // kg/m^3
     const Real rubber_young   = 0.01e9; // pascals (N/m)
     const Real rubber_poisson = 0.5;    // ratio
     const Real rubber_planestrain = 
@@ -915,7 +916,7 @@ Pencil::Pencil() {
     const Real rubber_dissipation = 0.1;
     const ContactMaterial rubber(rubber_planestrain,rubber_dissipation,0,0,0);
     // Nylon
-    const Real nylon_density = 1100.;  // kg/m^3
+    // const Real nylon_density = 1100.;  // kg/m^3
     const Real nylon_young   = 2.5e9;  // pascals (N/m)
     const Real nylon_poisson = 0.4;    // ratio
     const Real nylon_planestrain =
@@ -1068,14 +1069,14 @@ Block::Block() {
 
 
     // Control gains
-    const Real Kp1 = 50000; // link1-2 joint stiffness
-    const Real Kp2 = 10000; // link2-3 joint stiffness
-    const Real Cd1 = /*30*/100;    // link1-2 joint damping
-    const Real Cd2 = 30;    // link2-3 joint damping
+    // const Real Kp1 = 50000; // link1-2 joint stiffness
+    // const Real Kp2 = 10000; // link2-3 joint stiffness
+    // const Real Cd1 = /*30*/100;    // link1-2 joint damping
+    // const Real Cd2 = 30;    // link2-3 joint damping
 
     // Target angles
-    const Real Target1 = 0;
-    const Real Target2 = Pi/4;
+    // const Real Target1 = 0;
+    // const Real Target2 = Pi/4;
 
     const Vec3 Cube(.5,.5,.5); // half-dimensions of cube
     const Real Mass1=100, Mass2=20, Mass3=1;

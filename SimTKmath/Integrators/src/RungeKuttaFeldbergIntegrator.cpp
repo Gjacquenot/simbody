@@ -110,9 +110,9 @@ bool RungeKuttaFeldbergIntegratorRep::attemptODEStep
     if (ytmp[0].size() != y0.size())
         for (int i=0; i<NTemps; ++i)
             ytmp[i].resize(y0.size());
-    Vector& ysave = ytmp[0]; // rename temps
-    Vector& fa    = ytmp[1];
-    Vector& fb    = ytmp[2];
+    // Vector& ysave = ytmp[0]; // rename temps
+    // Vector& fa    = ytmp[1];
+    // Vector& fb    = ytmp[2];
 
     const Real h = t1-t0;
 

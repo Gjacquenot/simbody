@@ -210,7 +210,7 @@ void runOnce(const MyMultibodySystem& mbs, Integrator& integ, Real accuracy)
     while (true) {
         // Get access to State being advanced by the integrator. Interpolation 
         // must be off so that we're modifying the actual trajectory.
-        State& state = integ.updAdvancedState();
+        /* State& state = */ integ.updAdvancedState();
 
         #ifdef USE_VISUALIZER
         // Output a frame to the Visualizer if it is time.

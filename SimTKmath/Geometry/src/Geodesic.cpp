@@ -300,9 +300,9 @@ int ParticleConSurfaceSystemGuts::realizeAccelerationImpl(const State& s) const 
     Vec3&         a    = Vec3::updAs(&udot[0]);
     Real&         jdotdot = udot[3];            // Jacobi field 2nd derivative
 
-    const Real  ep =  geom.calcSurfaceValue(p); // position constraint error
+    // const Real  ep =  geom.calcSurfaceValue(p); // position constraint error
     const Vec3  GT =  geom.calcSurfaceGradient(p);
-    const Real  ev =  ~GT*v;                    // d/dt ep
+    // const Real  ev =  ~GT*v;                    // d/dt ep
     const Mat33 H  =  geom.calcSurfaceHessian(p);
     const Real Gdotv = ~v*(H*v);
     const Real  L = Gdotv/(~GT*GT);
@@ -413,7 +413,7 @@ void ParticleConSurfaceSystemGuts::projectQImpl(State& s, Vector& qerrest,
 void ParticleConSurfaceSystemGuts::projectUImpl(State& s, Vector& uerrest,
              const ProjectOptions& opts, ProjectResults& results) const
 {
-    const Real consAccuracy = opts.getRequiredAccuracy();
+    // const Real consAccuracy = opts.getRequiredAccuracy();
 
     const Vector& uerr = s.getUErr(subsysIndex); // set up aliases
     const Vec2&   ev   = Vec2::getAs(&uerr[0]);

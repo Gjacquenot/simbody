@@ -315,7 +315,6 @@ Matrix Constraint::calcPositionConstraintMatrixPt(const State& s) const {
     getNumConstraintEquationsInUse(s, mp, mv, ma);
 
     const SimbodyMatterSubsystem& matter = getMatterSubsystem();
-    const System&                 system = matter.getSystem();
 
     const int nu = matter.getNU(s);
     const int nb = matter.getNumBodies();
@@ -391,7 +390,6 @@ Matrix Constraint::calcVelocityConstraintMatrixV(const State& s) const {
     getNumConstraintEquationsInUse(s, mp, mv, ma);
 
     const SimbodyMatterSubsystem& matter = getMatterSubsystem();
-    const System&                 system = matter.getSystem();
 
     const int nu = matter.getNU(s); // same as nudot
 
@@ -421,7 +419,6 @@ Matrix Constraint::calcVelocityConstraintMatrixVt(const State& s) const {
     getNumConstraintEquationsInUse(s, mp, mv, ma);
 
     const SimbodyMatterSubsystem& matter = getMatterSubsystem();
-    const System&                 system = matter.getSystem();
 
     const int nu = matter.getNU(s);
     const int nb = matter.getNumBodies();
@@ -503,7 +500,6 @@ Matrix Constraint::calcAccelerationConstraintMatrixA(const State& s) const {
     getNumConstraintEquationsInUse(s, mp, mv, ma);
 
     const SimbodyMatterSubsystem& matter = getMatterSubsystem();
-    const System&                 system = matter.getSystem();
 
     const int nudot = matter.getNU(s); // same as nudot
 
@@ -533,7 +529,6 @@ Matrix Constraint::calcAccelerationConstraintMatrixAt(const State& s) const {
     getNumConstraintEquationsInUse(s, mp, mv, ma);
 
     const SimbodyMatterSubsystem& matter = getMatterSubsystem();
-    const System&                 system = matter.getSystem();
 
     const int nu = matter.getNU(s);
     const int nb = matter.getNumBodies();
@@ -599,7 +594,6 @@ Matrix Constraint::calcPositionConstraintMatrixPNInv(const State& s) const {
     getNumConstraintEquationsInUse(s, mp, mv, ma);
 
     const SimbodyMatterSubsystem& matter = getMatterSubsystem();
-    const System&                 system = matter.getSystem();
 
     const int nu = matter.getNU(s);
     const int nq = matter.getNQ(s);
@@ -772,7 +766,6 @@ void Constraint::PointInPlane::PointInPlaneImpl::calcDecorativeGeometryAndAppend
     // We can't generate the artwork until we know the normal, height, and follower
     // point location, which might not be until Instance stage.
     if (stage == Stage::Instance && getMyMatterSubsystemRep().getShowDefaultGeometry()) {
-        const SimbodyMatterSubsystemRep& matterRep = getMyMatterSubsystemRep();
         // TODO: should be instance-stage data from State rather than topological data
         // This makes z axis point along plane normal
         const Transform X_B1(Rotation(defaultPlaneNormal,ZAxis), defaultPlaneHeight*defaultPlaneNormal);
@@ -917,7 +910,6 @@ void Constraint::PointOnLine::PointOnLineImpl::calcDecorativeGeometryAndAppendVi
     // We can't generate the artwork until we know the direction, point on line, and follower
     // point location, which might not be until Instance stage.
     if (stage == Stage::Instance && getMyMatterSubsystemRep().getShowDefaultGeometry()) {
-        const SimbodyMatterSubsystemRep& matterRep = getMyMatterSubsystemRep();
         // TODO: should be instance-stage data from State rather than topological data
         // This makes z axis point along line
         const Transform X_B1(Rotation(defaultLineDirection,ZAxis), defaultPointOnLine);
@@ -1064,7 +1056,7 @@ void Constraint::ConstantAngle::ConstantAngleImpl::calcDecorativeGeometryAndAppe
     // We can't generate the artwork until we know the normal, height, and follower
     // point location, which might not be until Instance stage.
     if (stage == Stage::Instance && getMyMatterSubsystemRep().getShowDefaultGeometry()) {
-        const SimbodyMatterSubsystemRep& matterRep = getMyMatterSubsystemRep();
+        // const SimbodyMatterSubsystemRep& matterRep = getMyMatterSubsystemRep();
         //TODO
     }
 }
@@ -1665,8 +1657,6 @@ void Constraint::NoSlip1D::NoSlip1DImpl::calcDecorativeGeometryAndAppendVirtual
     // We can't generate the artwork until we know the direction and contact
     // point location, which might not be until Instance stage.
     if (stage == Stage::Instance && getMyMatterSubsystemRep().getShowDefaultGeometry()) {
-        const SimbodyMatterSubsystemRep& matterRep = getMyMatterSubsystemRep();
-
         const std::pair<Vec3,UnitVec3>& info = getContactInfo(s);
         const Vec3&     P_C = info.first;
         const UnitVec3& n_C = info.second;
@@ -2812,7 +2802,7 @@ void ConstraintImpl::realizeModel(State& s) const
 
 void ConstraintImpl::realizeInstance(const State& s) const {
     const SimbodyMatterSubsystemRep& matter = getMyMatterSubsystemRep();
-    const SBInstanceVars& instanceVars  = matter.getInstanceVars(s);
+    // const SBInstanceVars& instanceVars  = matter.getInstanceVars(s);
     SBInstanceCache&      ic = matter.updInstanceCache(s);
 
     const int ncb = getNumConstrainedBodies();

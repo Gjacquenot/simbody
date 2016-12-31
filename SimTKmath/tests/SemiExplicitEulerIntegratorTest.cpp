@@ -39,12 +39,6 @@ int main () {
     // ones that are either large or small compared to the expected internal 
     // step size of the integrator.
 
-    #ifndef NDEBUG
-        const int NumIters = 4;
-    #else
-        const int NumIters = 1; // takes too long in Debug
-    #endif
-
     for (int i = 0; i < 4; ++i) {
         PeriodicHandler::handler->setEventInterval
            (i == 0 || i == 1 ? 0.01 : 2.0);

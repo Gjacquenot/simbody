@@ -150,7 +150,7 @@ public:
     void realizeInstance(const SBStateDigest& sbs) const override {
         // Initialize cache entries that will never be changed at later stages.
         
-        SBTreeVelocityCache& vc = sbs.updTreeVelocityCache();
+        /* SBTreeVelocityCache& vc = */ sbs.updTreeVelocityCache();
         SBDynamicsCache& dc = sbs.updDynamicsCache();
         SBTreeAccelerationCache& ac = sbs.updTreeAccelerationCache();
         updY(dc) = SpatialMat(Mat33(0));
@@ -380,7 +380,7 @@ public:
         // Initialize cache entries that will never be changed at later stages.
         
         SBTreeVelocityCache& vc = sbs.updTreeVelocityCache();
-        SBTreeAccelerationCache& ac = sbs.updTreeAccelerationCache();
+        /* SBTreeAccelerationCache& ac = */ sbs.updTreeAccelerationCache();
         updV_FM(vc) = 0;
         updV_PB_G(vc) = 0;
         updVD_PB_G(vc) = 0;

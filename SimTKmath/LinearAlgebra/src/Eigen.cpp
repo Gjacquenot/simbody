@@ -303,7 +303,7 @@ void EigenRep<T>::computeValues(bool computeVectors) {
     } else {
         calcRightEigenVectors = 'N'; // don't compute right eigen vectors
     } 
-    int computeLwork = -1;
+    // int computeLwork = -1;
     //T size[1];
 /*
     if( structure ==  MatrixStructure::Symmetric ) {

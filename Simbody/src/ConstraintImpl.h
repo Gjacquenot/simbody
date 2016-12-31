@@ -1539,7 +1539,7 @@ void calcPositionDotErrorsVirtual
     const Vec3       p_AS = findStationLocationFromState(s, followerBody, 
                                                          defaultFollowerPoint);
     const Vec3       p_BC = ~X_AB * p_AS;
-    const Vec3       p_PC = p_BC - defaultPointOnLine;
+    // const Vec3       p_PC = p_BC - defaultPointOnLine;
 
     const Vec3       v_AS = findStationVelocity(s, allV_AB, followerBody, 
                                                 defaultFollowerPoint);
@@ -1570,7 +1570,7 @@ void calcPositionDotDotErrorsVirtual
                                                          defaultFollowerPoint);
     const Vec3       p_BC = ~X_AB * p_AS; // shift to B origin, reexpress in B;
                                  // C is material point of B coincident with S
-    const Vec3       p_PC = p_BC - defaultPointOnLine;
+    // const Vec3       p_PC = p_BC - defaultPointOnLine;
 
     const Vec3&      w_AB = getBodyAngularVelocityFromState(s, lineBody);
     const Vec3       v_AS = findStationVelocityFromState(s, followerBody, defaultFollowerPoint);

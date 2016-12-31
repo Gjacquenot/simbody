@@ -98,7 +98,6 @@ void testCrossProduct() {
     SimTK_TEST( crossMat(w2) == Row2( -w2[1], w2[0] ) );
     SimTK_TEST( crossMat(w2)*v2 == w2 % v2 );
 
-    const Mat22 full22 = Test::randMat<2,2>();
     const SymMat22 sym22 = Test::randSymMat<2>();
     const Mat22 fsym22(sym22);
     SimTK_TEST(fsym22 == sym22);

@@ -38,12 +38,8 @@ using std::endl;
 
 using namespace SimTK;
 
-static const Real Deg2Rad = (Real)SimTK_DEGREE_TO_RADIAN,
-                  Rad2Deg = (Real)SimTK_RADIAN_TO_DEGREE;
+static const Real Deg2Rad = (Real)SimTK_DEGREE_TO_RADIAN;
 
-
-
-static Real g = 9.8;
 static Real m = 1;
 
 int main(int argc, char** argv) {

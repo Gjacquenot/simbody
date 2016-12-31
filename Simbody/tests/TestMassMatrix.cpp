@@ -570,7 +570,7 @@ void testJacobianBiasTerms() {
     State state = system.realizeTopology();
     const int nq = state.getNQ();
     const int nu = state.getNU();
-    const int nb = matter.getNumBodies();
+    // const int nb = matter.getNumBodies();
 
     system.realizeModel(state);
     // Randomize state.
@@ -1360,8 +1360,8 @@ void testPositionKinematics() {
 
     State state = system.realizeTopology();
     const int nq = state.getNQ();
-    const int nu = state.getNU();
-    const int nb = matter.getNumBodies();
+    // const int nu = state.getNU();
+    // const int nb = matter.getNumBodies();
 
     system.realizeModel(state);
     // Randomize state.
@@ -1420,7 +1420,7 @@ void testVelocityKinematics() {
     State state = system.realizeTopology();
     const int nq = state.getNQ();
     const int nu = state.getNU();
-    const int nb = matter.getNumBodies();
+    // const int nb = matter.getNumBodies();
 
     system.realizeModel(state);
     // Randomize state.

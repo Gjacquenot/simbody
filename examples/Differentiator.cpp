@@ -253,7 +253,7 @@ int main() {
     Differentiator gradf(sf);       // use calcGradient()
     Differentiator df(vf);          // use calcJacobian()
 
-    int returnValue = 0; // assume success
+    // int returnValue = 0; // assume success
   try {
     gradf.setDefaultMethod(Differentiator::ForwardDifference);
     df.setDefaultMethod(Differentiator::UnspecifiedMethod);

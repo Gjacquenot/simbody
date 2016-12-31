@@ -357,8 +357,6 @@ void TasksMeasure<T>::Implementation::calcCachedValueVirtual
     // -----------
     const TaskSpace& p1 = m_tspace1;
 
-    const int nu = tau.size();
-
     const Real& kd = m_derivativeGain;
     const Real& kp = m_proportionalGain;
     const Vec3& x1_des = m_desiredTaskPosInGround;

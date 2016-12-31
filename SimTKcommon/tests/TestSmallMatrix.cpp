@@ -63,12 +63,10 @@ void testDotProducts() {
 void testCrossProducts() {
     const Vec3 w = Test::randVec3();
     const Vec3 v = Test::randVec3();
-    const Vec3 wp = UnitVec3(w).perp() * Test::randReal();
-    const Vec3 vp = UnitVec3(v).perp() * Test::randReal();
+    // const Vec3 wp = UnitVec3(w).perp() * Test::randReal();
+    // const Vec3 vp = UnitVec3(v).perp() * Test::randReal();
     const Mat33 vx = crossMat(v);
     const Mat33 wx = crossMat(w);
-    const Mat33 vpx = crossMat(vp);
-    const Mat33 wpx = crossMat(wp);
 
     const Mat33 m33 = Test::randMat33();
     const Mat34 m = Test::randMat<3,4>();

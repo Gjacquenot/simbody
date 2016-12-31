@@ -57,7 +57,7 @@ const Real steel_dissipation = 0.001;
 const ContactMaterial steel(steel_planestrain,steel_dissipation,0,0,0);
 
 // Concrete
-const Real concrete_density = 2300.;  // kg/m^3
+// const Real concrete_density = 2300.;  // kg/m^3
 const Real concrete_young   = 25e9;  // pascals (N/m)
 const Real concrete_poisson = 0.15;    // ratio
 const Real concrete_planestrain = 
@@ -68,7 +68,7 @@ const ContactMaterial concrete(concrete_planestrain,concrete_dissipation,
                                mu_s,mu_d,mu_v);
 
 // Nylon
-const Real nylon_density = 1100.;  // kg/m^3
+// const Real nylon_density = 1100.;  // kg/m^3
 const Real nylon_young   = 2.5e9;  // pascals (N/m)
 const Real nylon_poisson = 0.4;    // ratio
 const Real nylon_planestrain =

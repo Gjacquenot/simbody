@@ -2014,7 +2014,6 @@ static void readData(unsigned char* buffer, int bytes) {
 static Scene* readNewScene() {
     unsigned char buffer[256];
     float*          floatBuffer = (float*)          buffer;
-    int*            intBuffer   = (int*)            buffer;
     unsigned short* shortBuffer = (unsigned short*) buffer;
 
     Scene* newScene = new Scene;
@@ -2743,7 +2742,7 @@ int main(int argc, char** argv) {
     // Put the upper left corner of the glut window near the upper right
     // corner of the screen.
     int screenW = glutGet(GLUT_SCREEN_WIDTH);
-    int screenH = glutGet(GLUT_SCREEN_HEIGHT);
+    // int screenH = glutGet(GLUT_SCREEN_HEIGHT);
     int windowPosX = (screenW - DefaultWindowWidth) - 50;   // 50 pixel margin
     int windowPosY = 50;
 

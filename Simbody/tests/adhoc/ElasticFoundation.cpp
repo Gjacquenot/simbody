@@ -50,7 +50,7 @@ public:
         
         for (int i=0; i < ncont; ++i) {
             const ContactForce& force = m_compliant.getContactForce(state,i);
-            const ContactId     id    = force.getContactId();
+            // const ContactId     id    = force.getContactId();
             cout << state.getTime() 
                  << " " << force.getForceOnSurface2()[1][1] // Normal
                  << " " << force.getForceOnSurface2()[1][0] // Tangential
@@ -81,7 +81,7 @@ private:
 };
 
 // Nylon
-static const Real nylon_density = 1100.;  // kg/m^3
+// static const Real nylon_density = 1100.;  // kg/m^3
 static const Real nylon_young   = .05*2.5e9;  // pascals (N/m)
 static const Real nylon_poisson = 0.4;    // ratio
 static const Real nylon_planestrain = 
@@ -123,7 +123,7 @@ int main() {
 //#define SHOW_NORMALS
 Array_<DecorativeLine> smallNormals;
 Array_<DecorativeLine> largeNormals;
-const Real NormalLength = .001;
+// const Real NormalLength = .001;
 
 #define USE_MESH_SMALL
 #define USE_MESH_BIG

@@ -141,8 +141,7 @@ void testStandardForces() {
     Vector_<SpatialVec> bodyForces(matter.getNumBodies());
     Vector_<Vec3> particleForces(0);
     Vector mobilityForces(state.getNU());
-    Real pe = 0;
-    
+ 
     // Check ConstantForce
     
     bodyForces = SpatialVec(Vec3(0), Vec3(0));

@@ -499,9 +499,9 @@ void ensurePredictedContactsUpdated(const State& state) const {
     if (isDiscreteVarUpdateValueRealized(state, m_predictedContactsIx))
         return; // already done
 
-    const ContactSnapshot& nextActive    = getNextActiveContacts(state);
-    const ContactSnapshot& prevPredicted = getPrevPredictedContacts(state);
-    ContactSnapshot& nextPredicted = updNextPredictedContacts(state);
+    // const ContactSnapshot& nextActive    = getNextActiveContacts(state);
+    // const ContactSnapshot& prevPredicted = getPrevPredictedContacts(state);
+    // ContactSnapshot& nextPredicted = updNextPredictedContacts(state);
     // TODO
     markDiscreteVarUpdateValueRealized(state, m_predictedContactsIx);
 }

@@ -50,7 +50,6 @@ LBFGSOptimizer::LBFGSOptimizer( const OptimizerSystem& sys )
 } 
 
 Real LBFGSOptimizer::optimize(  Vector &results ) {
-    int iflag[1] = {0};
     Real f;
     const OptimizerSystem& sys = getOptimizerSystem();
     int n = sys.getNumParameters();

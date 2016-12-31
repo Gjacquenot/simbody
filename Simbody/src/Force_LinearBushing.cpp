@@ -456,7 +456,7 @@ ensureVelocityCacheValid(const State& state) const {
     const Rotation& R_GF = pc.X_GF.R();
     const Rotation& R_FM = pc.X_FM.R();
     const Vec3&     q    = pc.q.getSubVec<3>(0);
-    const Vec3&     p    = pc.q.getSubVec<3>(3);
+    // const Vec3&     p    = pc.q.getSubVec<3>(3);
 
     VelocityCache& vc = updVelocityCache(state);
 
@@ -495,8 +495,8 @@ ensureForceCacheValid(const State& state) const {
     if (isForceCacheValid(state)) return;
 
     const InstanceVars& iv = getInstanceVars(state);
-    const Transform& X_B1F = iv.X_B1F;
-    const Transform& X_B2M = iv.X_B2M;
+    // const Transform& X_B1F = iv.X_B1F;
+    // const Transform& X_B2M = iv.X_B2M;
     const Vec6&      k     = iv.k;
     const Vec6&      c     = iv.c;
 
@@ -505,26 +505,26 @@ ensureForceCacheValid(const State& state) const {
     ensurePositionCacheValid(state);
     const PositionCache& pc = getPositionCache(state);
 
-    const MobilizedBody& body1 = matter.getMobilizedBody(body1x);
-    const MobilizedBody& body2 = matter.getMobilizedBody(body2x);
+    // const MobilizedBody& body1 = matter.getMobilizedBody(body1x);
+    // const MobilizedBody& body2 = matter.getMobilizedBody(body2x);
 
-    const Transform& X_GB1 = body1.getBodyTransform(state);
-    const Rotation&  R_GB1 = X_GB1.R();
+    // const Transform& X_GB1 = body1.getBodyTransform(state);
+    // const Rotation&  R_GB1 = X_GB1.R();
 
-    const Transform& X_GB2 = body2.getBodyTransform(state);
-    const Rotation&  R_GB2 = X_GB2.R();
+    // const Transform& X_GB2 = body2.getBodyTransform(state);
+    // const Rotation&  R_GB2 = X_GB2.R();
 
-    const Vec3&      p_B1F = X_B1F.p();
-    const Vec3&      p_B2M = X_B2M.p();
+    // const Vec3&      p_B1F = X_B1F.p();
+    // const Vec3&      p_B2M = X_B2M.p();
 
     const Rotation&  R_GF = pc.X_GF.R();
-    const Vec3&      p_GF = pc.X_GF.p();
+    // const Vec3&      p_GF = pc.X_GF.p();
 
     const Rotation&  R_GM = pc.X_GM.R();
-    const Vec3&      p_GM = pc.X_GM.p();
+    // const Vec3&      p_GM = pc.X_GM.p();
 
-    const Rotation&  R_FM = pc.X_FM.R();
-    const Vec3&      p_FM = pc.X_FM.p();
+    // const Rotation&  R_FM = pc.X_FM.R();
+    // const Vec3&      p_FM = pc.X_FM.p();
 
     // Calculate stiffness generalized forces and potential
     // energy (cheap to do here).

@@ -320,7 +320,7 @@ calcDecorativeGeometryAndAppendVirtual
     if (   stage == Stage::Position 
         && getMyMatterSubsystemRep().getShowDefaultGeometry()) 
     {
-        const SimbodyMatterSubsystemRep& matterRep = getMyMatterSubsystemRep();
+        // const SimbodyMatterSubsystemRep& matterRep = getMyMatterSubsystemRep();
         const Parameters& params = getParameters(s);
         const Transform& X_FP = params.m_X_FP;
         const Vec3&      p_BO = params.m_p_BO;

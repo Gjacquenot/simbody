@@ -116,7 +116,7 @@ void testMaxIterations() {
     opt.setMaxIterations(500);
 
     // Optimize!
-    Real f = opt.optimize(results);
+    /*Real f = */ opt.optimize(results);
 
     // Make sure the result is not correct.
     SimTK_TEST_NOTEQ_TOL(results, sys.optimalParameters(), 1e-5);
@@ -191,7 +191,7 @@ void testSigmaAndAckleyOptimum() {
     // ===================================================
 
     // Optimize!
-    Real f1 = opt.optimize(results);
+    /*Real f1 = */ opt.optimize(results);
 
     static const Real TOL = 1e-5;
 
@@ -256,7 +256,7 @@ void testMaxFunEvals() {
     // =================================================================
     opt.setAdvancedIntOption("stopMaxFunEvals", 1);
     // Optimize!
-    Real f1 = opt.optimize(results);
+    /*Real f1 =*/ opt.optimize(results);
 
     // With default max function evaluations, should not have found optimum.
     SimTK_TEST(!vectorsAreEqual(results, sys.optimalParameters(), 1e-4, false));
@@ -288,7 +288,7 @@ void testSeed() {
     // ===================================================================
     opt.setAdvancedIntOption("seed", -10);
     SimTK_TEST_MUST_THROW_EXC(
-            Real f = opt.optimize(results),
+            /*Real f =*/ opt.optimize(results),
             SimTK::Exception::ValueWasNegative
     );
 
@@ -300,7 +300,7 @@ void testSeed() {
     opt.setAdvancedIntOption("seed", 42);
 
     // First optimization.
-    Real f1 = opt.optimize(results);
+    /*Real f1 =*/ opt.optimize(results);
     Vector results1 = results;
 
     // Second optimization.

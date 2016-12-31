@@ -263,9 +263,9 @@ static void evalP3UsingA(const Mat<4,4,Vec3P>& A, RealP u, RealP w,
                          Vec3P& Puuu, Vec3P& Puuw, Vec3P& Puww, Vec3P& Pwww) {
     typedef const Vec3P& Coef;
     Coef a33=A(0,0), a32=A(0,1), a31=A(0,2), a30=A(0,3), 
-         a23=A(1,0), a22=A(1,1), a21=A(1,2), a20=A(1,3), 
+         a23=A(1,0), a22=A(1,1), a21=A(1,2), 
          a13=A(2,0), a12=A(2,1), 
-         a03=A(3,0), a02=A(3,1); 
+         a03=A(3,0); 
 
     const RealP u2 = u*u, u3 = u*u2, w2 = w*w, w3 = w*w2;
     Puuu = 6*(a33*w3 + a32*w2 + a31*w + a30);

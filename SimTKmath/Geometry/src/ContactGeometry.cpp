@@ -1586,13 +1586,10 @@ calcGeodesicReverseSensitivity(Geodesic& geod, const Vec2& initJacobi) const {
     for (int step=geod.getNumPoints()-1; step >= 1; --step) {
         // Curve goes from P to Q. We have to integrate backwards from Q to P.
         const Transform& QFrenet = geod.getFrenetFrames()[step];
-        const Transform& PFrenet = geod.getFrenetFrames()[step-1];
         const Real sQ = geod.getArcLengths()[step];
         const Real sP = geod.getArcLengths()[step-1];
         const Vec3&      Q = QFrenet.p();
         const UnitVec3&  tQ = QFrenet.x(); // we'll reverse this
-        const Vec3&      P = PFrenet.p();
-        const UnitVec3&  tP = PFrenet.x();
 
         // Initialize state
         sysState.setTime(0);
@@ -1650,13 +1647,10 @@ calcGeodesicReverseSensitivity2
     for (int step=geod.getNumPoints()-1; step >= 1; --step) {
         // Curve goes from P to Q. We have to integrate backwards from Q to P.
         const Transform& QFrenet = geod.getFrenetFrames()[step];
-        const Transform& PFrenet = geod.getFrenetFrames()[step-1];
         const Real sQ = geod.getArcLengths()[step];
         const Real sP = geod.getArcLengths()[step-1];
         const Vec3&      Q = QFrenet.p();
         const UnitVec3&  tQ = QFrenet.x(); // we'll reverse this
-        const Vec3&      P = PFrenet.p();
-        const UnitVec3&  tP = PFrenet.x();
 
         // Initialize state
         Vec<N> yInit;
@@ -1937,9 +1931,6 @@ void ContactGeometryImpl::calcGeodesicUsingOrthogonalMethod
             //Real num_jtd = (num_jt2-num_jt)/1e-5;
             //printf("Jacobi dot Q num=%g, analytic=%g\n",
             //    num_jtd, geod0.getJacobiTransQDot());
-
-            const Real jt = geod.getJacobiTransQ();
-            const Real jtd = geod.getJacobiTransQDot();
 
             const Real eh = ~r_QQhat*geod.getNormalQ();
             const Real es = ~r_QQhat*geod.getTangentQ();
@@ -2248,9 +2239,8 @@ calcError(const Geodesic& geodP, const Geodesic& geodQ) const {
     const Transform& Fphat = geodP.getFrenetFrames().back();
     const Transform& Fqhat = geodQ.getFrenetFrames().back();
     const Vec3&      Phat = Fphat.p(); const Vec3&      Qhat = Fqhat.p();
-    const UnitVec3& tPhat = Fphat.x(); const UnitVec3& tQhat = Fqhat.x();
+                                       const UnitVec3& tQhat = Fqhat.x();
     const UnitVec3& bPhat = Fphat.y(); const UnitVec3& bQhat = Fqhat.y();
-    const UnitVec3& nPhat = Fphat.z(); const UnitVec3& nQhat = Fqhat.z();
 
     // Error is separation distance along mutual b direction, and angle by
     // which the curves fail to connect smoothly.

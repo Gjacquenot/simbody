@@ -86,11 +86,11 @@ namespace Ipopt
       } else {
          Number rcond = -1.0;
          Number *s,*work,workSize[2];
-         int ispec = 1;
+         // int ispec = 1;
          int info;
          int *iwork,rank,nlvl,smlsiz,lwork,liwork,nosmlsiz;
-         const char *name = "DGELSD";
-         const char opts = ' ';
+         // const char *name = "DGELSD";
+         // const char opts = ' ';
          s = new Number[n];
 
          smlsiz = 25;

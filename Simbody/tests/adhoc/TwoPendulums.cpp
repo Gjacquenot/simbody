@@ -37,8 +37,7 @@
 using namespace std;
 using namespace SimTK;
 
-static const Real Deg2Rad = (Real)SimTK_DEGREE_TO_RADIAN,
-                  Rad2Deg = (Real)SimTK_RADIAN_TO_DEGREE;
+static const Real Rad2Deg = (Real)SimTK_RADIAN_TO_DEGREE;
 
 static const Transform GroundFrame;
 
@@ -350,33 +349,33 @@ int main(int argc, char** argv) {
 
         Vector qdot;
         twoPends.calcQDot(s, s.getU(), qdot);
-       // cout << "===> qdot =" << qdot << endl;
+        // cout << "===> qdot =" << qdot << endl;
 
         Vector qdot2;
         twoPends.multiplyByN(s, false, s.getU(), qdot2);
-       // cout << "===> qdot2=" << qdot2 << endl;
+        // cout << "===> qdot2=" << qdot2 << endl;
 
         Vector u1,u2;
         twoPends.multiplyByNInv(s, false, qdot, u1);
         twoPends.multiplyByNInv(s, false, qdot2, u2);
-      //  cout << "===> u =" << s.getU() << endl;
-      //  cout << "===> u1=" << u1 << endl;
-      //  cout << "===> u2=" << u2 << endl;
-       // cout << "     norm=" << (s.getU()-u2).normRMS() << endl;
+        // cout << "===> u =" << s.getU() << endl;
+        // cout << "===> u1=" << u1 << endl;
+        // cout << "===> u2=" << u2 << endl;
+        // cout << "     norm=" << (s.getU()-u2).normRMS() << endl;
 
-        //sub.copyPositionsFromState(s, results);
-        //sub.copyVelocitiesFromState(s, results);
-       // sub.copyAccelerationsFromState(s, results);
-        //cout << results;
+        // sub.copyPositionsFromState(s, results);
+        // sub.copyVelocitiesFromState(s, results);
+        // sub.copyAccelerationsFromState(s, results);
+        // cout << results;
 
         display.report(s);
-        //if (s.getTime() >= finalTime)
-           // break;
+        // if (s.getTime() >= finalTime)
+        //  break;
 
-        //status = myStudy.stepTo(s.getTime() + dt);
+        // status = myStudy.stepTo(s.getTime() + dt);
 
-        //THIS CAN FAIL SOMETIMES
-        //if (s.getTime() >= nextReport*dt) 
+        // THIS CAN FAIL SOMETIMES
+        // if (s.getTime() >= nextReport*dt) 
         //    ++nextReport;
 
         if (status == Integrator::ReachedReportTime)

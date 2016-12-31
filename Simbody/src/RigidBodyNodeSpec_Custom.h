@@ -90,8 +90,8 @@ public:
     void calcQDotDot(const SBStateDigest& sbs, 
                                        const Real* udot, Real* qdotdot) const 
     {
-        const SBModelVars&          mv = sbs.getModelVars();
-        const SBTreePositionCache&  pc = sbs.getTreePositionCache();
+        // const SBModelVars&          mv = sbs.getModelVars();
+        // const SBTreePositionCache&  pc = sbs.getTreePositionCache();
         const int nqInUse = getNQInUse(sbs.getModelVars());
         const Real* u = &sbs.getU()[this->getUIndex()];
         impl.multiplyByN(sbs.getState(), false, nu, udot, nqInUse, qdotdot);

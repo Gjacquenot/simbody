@@ -298,14 +298,14 @@ ensurePositionCacheRealized(const State& s) const {
     const Parameters& params = getParameters(s);
     const Vec3&       p_FSf  = params.m_p_FSf;
     const Vec3&       p_BSb  = params.m_p_BSb;
-    const Real        length = params.m_length;
+    // const Real        length = params.m_length;
 
     PositionCache& pc = updPositionCache(s);
 
     const Transform&  X_AF = getBodyTransformFromState(s, m_mobod_F);
     const Transform&  X_AB = getBodyTransformFromState(s, m_mobod_B);
-    const Vec3& p_AF = X_AF.p();
-    const Vec3& p_AB = X_AB.p();
+    // const Vec3& p_AF = X_AF.p();
+    // const Vec3& p_AB = X_AB.p();
 
     pc.p_FSf_A = X_AF.R() * p_FSf;            // exp. in A, 15 flops
     const Vec3 p_ASf = X_AF.p() + pc.p_FSf_A; // meas. from Ao, 3 flops

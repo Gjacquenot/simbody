@@ -673,7 +673,7 @@ public:
 
     // This is the witness function.
     Real getValue(const State& state) const override {
-        const SimbodyMatterSubsystem& matter = m_mbs.getMatterSubsystem();
+        // const SimbodyMatterSubsystem& matter = m_mbs.getMatterSubsystem();
         const MyContactElement& uni = m_unis.getContactElement(m_which);
         if (!uni.isDisabled(state)) 
             return 0; // already locked
@@ -1939,7 +1939,7 @@ void ContactOn::
 processCompressionPhase(MyElementSubset&    proximal,
                         State&              s) const
 {
-    const int ReviseNormalNIters = 6;
+    // const int ReviseNormalNIters = 6;
 
     SimTK_DEBUG2("Entering processCompressionPhase(): "
         "%d/%d impact/stick candidates ...\n", proximal.m_contact.size(),
@@ -1988,7 +1988,7 @@ processCompressionPhase(MyElementSubset&    proximal,
     // involving as many constraints as possible sharing the impulse. 
     m_unis.enableConstraintSubset(proximal, true, s); 
 
-    int pass=0, nContactsDisabled=0, nStictionDisabled=0, nContactsReenabled=0;
+    int pass=0, nContactsDisabled=0, nStictionDisabled=0 /*, nContactsReenabled=0 */;
     while (true) {
         ++pass; 
         SimTK_DEBUG1("processCompressionPhase(): pass %d\n", pass);
@@ -2033,8 +2033,8 @@ processCompressionPhase(MyElementSubset&    proximal,
         if (mostNegativeVerr < 0) {
             SimTK_DEBUG2("  !!! Inactive contact %d violated, verr=%g\n", 
                 worstInactiveContact, mostNegativeVerr);
-            const MyContactElement& cont = 
-                m_unis.getContactElement(worstInactiveContact);
+            // const MyContactElement& cont = 
+            //    m_unis.getContactElement(worstInactiveContact);
             //TODO -- must use a tolerance or prevent looping
             //++nContactsReenabled;
             //cont.enable(s);
@@ -2464,7 +2464,7 @@ findActiveCandidates(State& s, const MyElementSubset& candidates) const
         if (mostNegativeAerr < 0) {
             SimTK_DEBUG2("  !!! Inactive contact %d violated, aerr=%g\n", 
                 worstInactiveContact, mostNegativeAerr);
-            const MyContactElement& cont = getContactElement(worstInactiveContact);
+            // const MyContactElement& cont = getContactElement(worstInactiveContact);
             //TODO -- must use a tolerance or prevent looping
             //++nContactsReenabled;
             //cont.enable(s);

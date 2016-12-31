@@ -141,15 +141,11 @@ int main() {
                         1.000081, 1.000161, 1.000325, 1.000650, 1.001302, 
                         1.002603, 1.005214, 1.010450, 1.021013, 1.042466, 
                         1.086736, 1.180997, 1.394759, 1.945352, 3.784388 };
-    bool fail = false;
     for( i=0; i<NUMBER_OF_PARAMETERS; i++ ) {
        if(!equalToTol(results[i], expected[i], TOL)) {
            printf(" LBFGSBDiffTest.cpp: error results[%d] = %f  expected=%f \n",i,results[i], expected[i]);
            returnValue = 1;
        }
     }
-
     return( returnValue );
-
-
 }

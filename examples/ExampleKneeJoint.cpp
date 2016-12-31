@@ -39,11 +39,6 @@
 using namespace SimTK;
 using namespace std;
 
-static const Real m = 1;   // kg
-static const Real g = 9.8; // meters/s^2; apply in –y direction
-static const Real d = 0.4; // meters
-static const Real Deg2Rad = Pi/180;
-
 static const Real Accuracy = 1e-3;  // integration accuracy
 
 // The real deviation of a knee from a pin joint is subtle; it is more fun to
@@ -106,8 +101,6 @@ private:
 //------------------------------------------------------------------------------
 int main(int argc, char** argv) {
 try { // If anything goes wrong, an exception will be thrown.
-
-    int i = 0;
 
     //--------------------------------------------------------------------------
     // Experimental data points (x,y) of tibia origin (tibial plateau) measured 

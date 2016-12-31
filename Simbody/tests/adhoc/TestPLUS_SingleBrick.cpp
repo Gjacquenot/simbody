@@ -106,7 +106,7 @@ const Real TolVelocityFuzziness  = 1.0e-5;  //Expected velocity tolerance.
 const Real TolReliableDirection  = 1.0e-4;  //Whether to trust v_t direction.
 const Real TolMaxDifDirIteration = 0.05;    //Slip direction within 2.9 degrees.
 const Real TolPiDuringNewton     = 1.0e-3;  //Iterate until error.norm() < tol.
-const Real MinMeaningfulAlpha    = 1.0e-2;  //Smallest acceptable step length.
+// const Real MinMeaningfulAlpha    = 1.0e-2;  //Smallest acceptable step length.
 const Real MinMeaningfulImpulse  = 1.0e-6;  //Smallest acceptable impulse.
 const Real MaxStickingTangVel    = 1.0e-1;  //Cannot stick above this velocity.
 const Real MaxSlidingDirChange   = 0.25;    //Limit on sliding direction change.
@@ -567,7 +567,7 @@ public:
     {
         report(s);
         printf("t=%0.3f  %s", s.getTime(), msg.c_str());
-        char trash = getchar();
+        /* char trash = */ getchar();
     }
 };
 
@@ -869,7 +869,7 @@ static void simulateMultibodySystem(const std::string& description,
     printf("Simulation complete.\n");
     if (PauseBeforeClosingVizWindow) {
         printf("Press <Enter> to continue...\n");
-        char trash = getchar();
+        /* char trash = */ getchar();
     }
     viz.shutdown();
 }
@@ -1476,7 +1476,7 @@ performImpactExhaustive(State& s,
             if (PrintDebugInfoImpact)
                 printActiveSetInfo(activeSetCandidates[i]);
             if (PauseAfterEachActiveSetCandidate)
-                char trash = getchar();
+                /* char trash = */ getchar();
         }
 
         if (PrintDebugInfoActiveSetSearch) {
@@ -1701,7 +1701,7 @@ performImpactExhaustive(State& s,
                  << "\n     hasRebounded = " << hasRebounded << endl;
         }
         if (PauseAfterEachImpactInterval)
-            char trash = getchar();
+            /* char trash = */ getchar();
 
     } //end interval-stepping loop
     if (PrintBasicInfo)
@@ -1802,7 +1802,7 @@ performImpactPruning(State& s,
             if (PrintDebugInfoImpact)
                 printActiveSetInfo(asc);
             if (PauseAfterEachActiveSetCandidate)
-                char trash = getchar();
+                /* char trash = */ getchar();
 
             // Keep track of least-objectionable active set candidate.
             if (asc.solutionCategory <= bestAsc.solutionCategory ||
@@ -2058,7 +2058,7 @@ performImpactPruning(State& s,
                  << "\n     hasRebounded = " << hasRebounded << endl;
         }
         if (PauseAfterEachImpactInterval)
-            char trash = getchar();
+            /* char trash = */ getchar();
 
     } //end interval-stepping loop
     if (PrintBasicInfo)
@@ -2721,7 +2721,7 @@ void Impacter::generateAndSolveUsingNewton(const State& s0,
     Matrix MassMatrix, GMatrix;
     m_mbs.getMatterSubsystem().calcM(s, MassMatrix);
     m_mbs.getMatterSubsystem().calcG(s, GMatrix);
-    const int N = MassMatrix.nrow();
+    // const int N = MassMatrix.nrow();
     const int M = GMatrix.nrow();
     Matrix MinvGtranspose = MassMatrix.invert() * GMatrix.transpose(); //Needed
     Matrix A = GMatrix * MinvGtranspose;                               //later.
@@ -2865,7 +2865,7 @@ Real Impacter::generateAndSolveUsingNewtonWithPMD(const State& s0,
     Matrix MassMatrix, GMatrix;
     m_mbs.getMatterSubsystem().calcM(s, MassMatrix);
     m_mbs.getMatterSubsystem().calcG(s, GMatrix);
-    const int N = MassMatrix.nrow();
+    // const int N = MassMatrix.nrow();
     const int M = GMatrix.nrow();
     Matrix MinvGtranspose = MassMatrix.invert() * GMatrix.transpose(); //Needed
     Matrix A = GMatrix * MinvGtranspose;                               //later.
@@ -3481,7 +3481,7 @@ void Impacter::updErrorVectorForNewton(const State& s,
             // Row indices into Jacobian J corresponding to the constraints for
             // this proximal point.
             const int row_x = getIndexOfFirstMultiplier(s,idx);
-            const int row_y = row_x + 1;
+            // const int row_y = row_x + 1;
             const int row_z = row_x + 2;
 
             // Tangential directions.
@@ -3527,7 +3527,7 @@ void Impacter::updErrorVectorForNewtonWithAlpha(const State& s,
             // Row indices into Jacobian J corresponding to the constraints for
             // this proximal point.
             const int row_x = getIndexOfFirstMultiplier(s,idx);
-            const int row_y = row_x + 1;
+            // const int row_y = row_x + 1;
             const int row_z = row_x + 2;
 
             // Tangential directions.
@@ -3611,7 +3611,7 @@ void Impacter::updErrorForSlidingWithAlpha(Vector& F, Matrix& A,
     // F_x[k] = err_sliding,x = ||d_[k]||.pi_x[k] - mu_[k].piStar_z[k].d_[k],x
     const int  row_y = row_x + 1;
     const int  row_z = row_x + 2;
-    const int  M     = A.ncol();
+    // const int  M     = A.ncol();
     const Real v_x   = v0[0];
     const Real v_y   = v0[1];
     const Real vnorm = sqrt(v_x*v_x + v_y*v_y);
@@ -3682,7 +3682,7 @@ void Impacter::updJacobianMatrixForNewton(const State& s,
             // Row indices into Jacobian J corresponding to the constraints for
             // this proximal point.
             const int row_x = getIndexOfFirstMultiplier(s,idx);
-            const int row_y = row_x + 1;
+            // const int row_y = row_x + 1;
             const int row_z = row_x + 2;
 
             // Tangential directions.
@@ -3728,7 +3728,7 @@ void Impacter::updJacobianMatrixForNewtonWithAlpha(const State& s,
             // Row indices into Jacobian J corresponding to the constraints for
             // this proximal point.
             const int row_x = getIndexOfFirstMultiplier(s,idx);
-            const int row_y = row_x + 1;
+            // const int row_y = row_x + 1;
             const int row_z = row_x + 2;
 
             // Tangential directions.

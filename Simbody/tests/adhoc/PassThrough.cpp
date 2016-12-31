@@ -31,7 +31,7 @@ static const Real TimeScale = 0.21;
 static const Real FrameRate = 30;
 static const Real ReportInterval = TimeScale/FrameRate;
 static const Real ForceScale = .25;
-static const Real MomentScale = .5;
+// static const Real MomentScale = .5;
 
 
 class ForceArrowGenerator : public DecorationGenerator {
@@ -71,7 +71,7 @@ public:
             geometry.push_back(momLine);
 
             ContactPatch patch;
-            const bool found = m_compliant.calcContactPatchDetailsById(state,id,patch);
+            /* const bool found = */ m_compliant.calcContactPatchDetailsById(state,id,patch);
             //cout << "patch for id" << id << " found=" << found << endl;
             //cout << "resultant=" << patch.getContactForce() << endl;
             //cout << "num details=" << patch.getNumDetails() << endl;
@@ -341,25 +341,26 @@ int main() {
 
 
         ts.initialize(state);
-        double cpuStart = cpuTime();
-        double realStart = realTime();
+        // double cpuStart = cpuTime();
+        // double realStart = realTime();
 
         ts.stepTo(2000.0);
 
-        const double timeInSec = realTime() - realStart;
-        const int evals = integ.getNumRealizations();
-        /*  cout << "Done -- took " << integ.getNumStepsTaken() << " steps in " <<
-        timeInSec << "s elapsed for " << ts.getTime() << "s sim (avg step="
-        << (1000*ts.getTime())/integ.getNumStepsTaken() << "ms) "
-        << (1000*ts.getTime())/evals << "ms/eval\n";
-    cout << "  CPU time was " << cpuTime() - cpuStart << "s\n";
+        // const double timeInSec = realTime() - realStart;
+        // const int evals = integ.getNumRealizations();
+        /*
+        cout << "Done -- took " << integ.getNumStepsTaken() << " steps in "
+             << timeInSec << "s elapsed for " << ts.getTime() << "s sim (avg step="
+             << (1000*ts.getTime())/integ.getNumStepsTaken() << "ms) "
+             << (1000*ts.getTime())/evals << "ms/eval\n";
+        cout << "  CPU time was " << cpuTime() - cpuStart << "s\n";
 
-    printf("Using Integrator %s at accuracy %g:\n",
+        printf("Using Integrator %s at accuracy %g:\n",
         integ.getMethodName(), integ.getAccuracyInUse());
-    printf("# STEPS/ATTEMPTS = %d/%d\n", integ.getNumStepsTaken(), integ.getNumStepsAttempted());
-    printf("# ERR TEST FAILS = %d\n", integ.getNumErrorTestFailures());
-    printf("# REALIZE/PROJECT = %d/%d\n", integ.getNumRealizations(), integ.getNumProjections());
-*/
+        printf("# STEPS/ATTEMPTS = %d/%d\n", integ.getNumStepsTaken(), integ.getNumStepsAttempted());
+        printf("# ERR TEST FAILS = %d\n", integ.getNumErrorTestFailures());
+        printf("# REALIZE/PROJECT = %d/%d\n", integ.getNumRealizations(), integ.getNumProjections());
+        */
         viz.dumpStats(std::cout);
 
         // Add as slider to control playback speed.

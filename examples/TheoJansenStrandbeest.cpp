@@ -92,7 +92,7 @@ const ContactMaterial rubber(rubber_planestrain,rubber_dissipation,
                                mu_s,mu_d,mu_v);
 
 // Concrete for ground
-const Real concrete_density = 2300.;  // kg/m^3
+// const Real concrete_density = 2300.;  // kg/m^3
 const Real concrete_young   = 25e9;  // pascals (N/m)
 const Real concrete_poisson = 0.15;    // ratio
 const Real concrete_planestrain = 

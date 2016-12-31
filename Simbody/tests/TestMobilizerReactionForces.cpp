@@ -119,7 +119,7 @@ void testByComparingToConstraints() {
     system.realizeTopology();
     State state = system.getDefaultState();
     Random::Gaussian random;
-    int nq = state.getNQ()/2;
+    // int nq = state.getNQ()/2;
     for (int i = 0; i < state.getNY(); ++i)
         state.updY()[i] = random.getValue();
     system.realize(state, Stage::Velocity);
@@ -259,9 +259,8 @@ void testByComparingToConstraints2() {
     system.realize(state);
     //viz.report(state);
 
-    const MobodIndex p2x = pendulum2.getMobilizedBodyIndex();
-    const MobodIndex p2bx = pendulum2b.getMobilizedBodyIndex();
-
+    // const MobodIndex p2x = pendulum2.getMobilizedBodyIndex();
+    // const MobodIndex p2bx = pendulum2b.getMobilizedBodyIndex();
 
     Vector_<SpatialVec> forcesAtMInG, forcesAtBInG, forcesAtFInG;
     matter.calcMobilizerReactionForces(state, forcesAtMInG);

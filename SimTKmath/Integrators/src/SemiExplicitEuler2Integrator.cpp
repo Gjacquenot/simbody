@@ -98,7 +98,7 @@ void SemiExplicitEuler2IntegratorRep::createInterpolatedState(Real t) {
 // See comment above re this being a first-order *whole step* interpolation.
 void SemiExplicitEuler2IntegratorRep::
 backUpAdvancedStateByInterpolation(Real t) {
-    const System& system   = getSystem();
+    // const System& system   = getSystem();
     State& advanced = updAdvancedState();
     const Real t0 = getPreviousTime(), t1 = advanced.getTime();
     const Vector& y0 = getPreviousY();
@@ -153,13 +153,13 @@ bool SemiExplicitEuler2IntegratorRep::attemptDAEStep
     errOrder = 2;
 
     const Real    t0        = getPreviousTime();       // nicer names
-    const Vector& q0        = getPreviousQ();
-    const Vector& u0        = getPreviousU();
-    const Vector& z0        = getPreviousZ();
-    const Vector& qdot0     = getPreviousQDot();
-    const Vector& udot0     = getPreviousUDot();
-    const Vector& zdot0     = getPreviousZDot();
-    const Vector& qdotdot0  = getPreviousQDotDot();
+    // const Vector& q0        = getPreviousQ();
+    // const Vector& u0        = getPreviousU();
+    // const Vector& z0        = getPreviousZ();
+    // const Vector& qdot0     = getPreviousQDot();
+    // const Vector& udot0     = getPreviousUDot();
+    // const Vector& zdot0     = getPreviousZDot();
+    // const Vector& qdotdot0  = getPreviousQDotDot();
 
     const Real h = t1-t0, hHalf = h/2, tHalf = t0 + hHalf;
 

@@ -247,9 +247,9 @@ int main() {
     Body::Rigid ellipsoidBody(MassProperties(1.0, Vec3(0), 
         1.*UnitInertia::ellipsoid(radii)));
 
-    const Real CylRad = .3, HalfLen = .5;
+    const Real HalfLen = .5;
     Body::Rigid cylinderBody(MassProperties(1.0, Vec3(0), 
-        1.*UnitInertia::cylinderAlongX(Rad,HalfLen)));
+        1.*UnitInertia::cylinderAlongX(Rad, HalfLen)));
 
     Body::Rigid fancyBody = biggerBody; // NOT USING ELLIPSOID
 

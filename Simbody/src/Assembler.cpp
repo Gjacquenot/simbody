@@ -833,12 +833,12 @@ Real Assembler::assemble() {
     }
 
 
-    const int nfreeq = getNumFreeQs();
-    const int nqerr = internalState.getNQErr();
+    //const int nfreeq = getNumFreeQs();
+    //const int nqerr = internalState.getNQErr();
 
 
-   // std::cout << "assemble(): initial tol/goal is " 
-     //         << calcCurrentError() << "/" << calcCurrentGoal() << std::endl;
+    //std::cout << "assemble(): initial tol/goal is " 
+    //          << calcCurrentError() << "/" << calcCurrentGoal() << std::endl;
 
     for (unsigned i=0; i < reporters.size(); ++i)
         reporters[i]->handleEvent(internalState);
@@ -930,8 +930,8 @@ Real Assembler::track(Real frameTime) {
     }
 
 
-    const int nfreeq = getNumFreeQs();
-    const int nqerr = internalState.getNQErr();
+    // const int nfreeq = getNumFreeQs();
+    // const int nqerr = internalState.getNQErr();
 
 
     // std::cout << "track(): initial tol/goal is " 

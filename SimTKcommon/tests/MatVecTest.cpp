@@ -506,6 +506,7 @@ void testMiscellaneous()
 
     Vec<3> nvorig = -vorig;
     Vec<2, Vec<3> > nv2orig = -v2orig;
+    cout << "nvorig=" << nvorig << "\nnv2orig" << nv2orig << endl;
 
     Mat<3,2> morig(vorig,-vorig);
     cout << "morig=" << morig << " morig.abs()=" << morig.abs() << endl;

@@ -41,7 +41,10 @@ const Real FrameRate = 30;
 const Real TimeScale = 1; // i.e., 2 -> 2X real time
 
 // We call this "wind" but it is implemented with Force::Gravity.
-static const int GravityX=1, GravityY=2, GravityZ=3, GravityMag=4; // sliders
+static const int GravityX=1; // slider
+// static const int GravityY=2; // slider
+// static const int GravityZ=3; // slider
+static const int GravityMag=4; // slider
 static const Real GravityDefault=10, GravityMax=20;
 
 // A FrameController is called by the Visualizer just prior to rendering a

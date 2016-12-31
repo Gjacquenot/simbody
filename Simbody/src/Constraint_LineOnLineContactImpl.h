@@ -374,10 +374,10 @@ void calcPositionDotDotErrorsVirtual
     }
 
     const SpatialVec& A_AF = allA_AB[m_mobod_F];
-    const Vec3& b_AF = A_AF[0]; const Vec3& a_AF = A_AF[1];
+    const Vec3& b_AF = A_AF[0]; // const Vec3& a_AF = A_AF[1];
 
     const SpatialVec& A_AB = allA_AB[m_mobod_B];
-    const Vec3& b_AB = A_AB[0]; const Vec3& a_AB = A_AB[1];
+    const Vec3& b_AB = A_AB[0]; // const Vec3& a_AB = A_AB[1];
 
     const UnitVec3& df_A  = pc.df_A;
     const UnitVec3& db_A  = pc.db_A;

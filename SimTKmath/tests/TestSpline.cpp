@@ -472,7 +472,7 @@ void testNaturalCubicSpline() {
     ////////////////////////////
         bool printToTerminal = false; //Setting this to true will print some 
                                       //useful data to the terminal
-        bool printData = false;       //Set to true to print the knot, 
+        // bool printData = false;       //Set to true to print the knot, 
                                       //mid knot, and 
                                       //dense vector values, first derivatives, 
                                       //and second derivatives (for the splines) 
@@ -493,7 +493,7 @@ void testNaturalCubicSpline() {
 
         deltaX = (xmax-xmin)/(size-1);    
         deltaD = (xmax-xmin)/(sizeD-1);
-        double etime = 0;
+        // double etime = 0;
     /////////////////////////////
     //Test Code body
     ////////////////////////////

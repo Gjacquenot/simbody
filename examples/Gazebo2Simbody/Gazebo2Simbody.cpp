@@ -920,7 +920,7 @@ static void runSimulation(const MultibodySystem&          mbs,
         state.getQErr().norm());
     getchar();
     Assembler assembler(mbs);
-    Real assemblyTol = assembler.assemble(state);
+    /* Real assemblyTol = */ assembler.assemble(state);
     viz.report(state);
     printf("ASSEMBLED to err=%g -- ENTER to simulate\n", 
         state.getQErr().norm());

@@ -1263,7 +1263,7 @@ copyAccelerationsFromState(const State& s, SimbodyMatterSubtreeResults::SubtreeR
             const Vec3 p_AB_G_dot    = V_GB[1]  - V_GA[1];     // taken in G
             const Vec3 p_AB_G_dotdot = A_GB[1]  - A_GA[1];     // taken in G
 
-            const Vec3 v_AB_G = p_AB_G_dot - V_GA[0] % p_AB_G; // taken in A, exp. in G
+            // const Vec3 v_AB_G = p_AB_G_dot - V_GA[0] % p_AB_G; // taken in A, exp. in G
             const Vec3 b_AB_G = A_GB[0] - A_GA[0];             // relative angular acceleration
             const Vec3 a_AB_G = p_AB_G_dotdot - (A_GA[0] % p_AB_G + V_GA[0] % p_AB_G_dot); // taken in A, exp. in G
             const SpatialVec A_AB = ~X_GA.R() * SpatialVec(b_AB_G, a_AB_G); // re-express in A

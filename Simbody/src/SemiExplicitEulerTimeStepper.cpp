@@ -1071,7 +1071,7 @@ bool SemiExplicitEulerTimeStepper::
 calcNewtonRestitutionIfAny(const State& s, const Vector& verr,
                            Vector& newtonVerr) const 
 {
-    const SimbodyMatterSubsystem& matter = m_mbs.getMatterSubsystem();
+    // const SimbodyMatterSubsystem& matter = m_mbs.getMatterSubsystem();
 
     newtonVerr.resize(verr.size());
     newtonVerr.setToZero();

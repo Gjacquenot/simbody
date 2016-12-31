@@ -737,7 +737,7 @@ void testBicubicConsistencyContinuity(Real xmin, Real xmax, Real ymin,
 
     Real tol1 = dh;
     Real tol2 = dh*10;
-    Real tol3 = dh*100;
+    // Real tol3 = dh*100;
     Vector dirXY(2);
 
     
@@ -781,7 +781,7 @@ void testBicubicConsistencyContinuity(Real xmin, Real xmax, Real ymin,
                 dirXY(0) = meshX(i,j)-meshX(8,8);
                 dirXY(1) = meshY(i,j)-meshY(8,8);
 
-                Real dist = pow(dirXY(0)*dirXY(0) + dirXY(1)*dirXY(1),0.5);
+                // Real dist = pow(dirXY(0)*dirXY(0) + dirXY(1)*dirXY(1),0.5);
 
                 //Test for surface continuity
                 Real f0 = bcsF(i,j) -(bcsFx(i,j)*dirXY(0) 
@@ -860,8 +860,8 @@ void testCopyConstEqOp(){
     Real smoothness = 0.1;
 
     int size = 4;
-    Real minstep = min((xmax-xmin),(ymax-ymin));
-    Real dh = (minstep/(Real)size)/100.0;
+    // Real minstep = min((xmax-xmin),(ymax-ymin));
+    // Real dh = (minstep/(Real)size)/100.0;
 
     Vector xV(size), yV(size),dxV(4),dyV(4), tmpV(4), aXY(2);
     Matrix zM(size,size);

@@ -292,7 +292,7 @@ dcdxFunc(int nparam,int j,double *x,double *dcdx,
     // TODO: support numerical gradients
     CFSQPOptimizer *cfsqp = (CFSQPOptimizer *)cd;
     int nx=cfsqp->getOptimizerSystem().getNumParameters();
-    int nc=cfsqp->getOptimizerSystem().getNumConstraints();
+    // int nc=cfsqp->getOptimizerSystem().getNumConstraints();
     // special wrapper to deal with caching
         Vector temp(nx,dcdx,true);
     cfsqp->computeConstraintGradient(Vector(nx,x,true),true,temp,j-1);
@@ -380,7 +380,7 @@ int CFSQPOptimizer::
 computeConstraint(const SimTK::Vector &x, const bool new_coefficients, double &c, int ic) const
 {
     int nx=getOptimizerSystem().getNumParameters();
-    int nc=getOptimizerSystem().getNumConstraints();
+    // iint nc=getOptimizerSystem().getNumConstraints();
     int status = 0;
 #ifdef USE_CONSTRAINT_CACHE
     bool cached_value_available = false;
@@ -410,7 +410,7 @@ int CFSQPOptimizer::
 computeConstraintGradient(const SimTK::Vector &x, const bool new_coefficients, SimTK::Vector &dcdx, int ic) const
 {
     int nx=getOptimizerSystem().getNumParameters();
-    int nc=getOptimizerSystem().getNumConstraints();
+    // int nc=getOptimizerSystem().getNumConstraints();
     int status = 0;
 #ifdef USE_CONSTRAINT_CACHE
     bool cached_value_available = false;

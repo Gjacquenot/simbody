@@ -674,8 +674,8 @@ void Visualizer::Impl::drawRealtimeFrameWhenReady
 {
     const long long earliestDrawTimeAdjRT = 
         desiredDrawTimeAdjRT - m_allowableFrameJitterInNs;
-    const long long latestDrawTimeAdjRT = 
-        desiredDrawTimeAdjRT + m_allowableFrameJitterInNs;
+    // const long long latestDrawTimeAdjRT = 
+    //    desiredDrawTimeAdjRT + m_allowableFrameJitterInNs;
 
     // Wait for the next frame time, allowing for a little jitter 
     // since we can't expect sleep to wake us up at the exact time.

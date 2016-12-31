@@ -31,12 +31,12 @@
 using namespace std;
 using namespace SimTK;
 
-static const Real Deg2Rad = (Real)SimTK_DEGREE_TO_RADIAN,
-                  Rad2Deg = (Real)SimTK_RADIAN_TO_DEGREE;
+// static const Real Deg2Rad = (Real)SimTK_DEGREE_TO_RADIAN,
+//                   Rad2Deg = (Real)SimTK_RADIAN_TO_DEGREE;
 
 static const Transform GroundFrame;
 
-static const Real m = 5;   // kg
+// static const Real m = 5;   // kg
 static const Real g = 9.8; // meters/s^2; apply in –y direction
 static const Real d = 0.5; // meters
 

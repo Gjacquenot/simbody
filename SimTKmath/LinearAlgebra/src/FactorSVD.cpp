@@ -246,7 +246,6 @@ template <typename T >
 void FactorSVDRep<T>::doSolve(  Matrix_<T>& b, Matrix_<T>& x) {
     int i,j;
     int info;
-    typedef typename CNT<T>::TReal RealType;
 
     if( b.nelt() == 0 || inputMatrix.size == 0) return;
 

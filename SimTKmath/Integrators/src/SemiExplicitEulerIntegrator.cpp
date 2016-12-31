@@ -89,7 +89,7 @@ void SemiExplicitEulerIntegratorRep::createInterpolatedState(Real t) {
 // where tHigh < tAdvanced.
 void SemiExplicitEulerIntegratorRep::
 backUpAdvancedStateByInterpolation(Real t) {
-    const System& system   = getSystem();
+    // const System& system   = getSystem();
     State& advanced = updAdvancedState();
     const Real t0 = getPreviousTime(), t1 = advanced.getTime();
     const Vector& y0 = getPreviousY();
@@ -134,13 +134,13 @@ bool SemiExplicitEulerIntegratorRep::attemptDAEStep
     statsStepsAttempted++;
 
     const Real    t0        = getPreviousTime();       // nicer names
-    const Vector& q0        = getPreviousQ();
-    const Vector& u0        = getPreviousU();
-    const Vector& z0        = getPreviousZ();
-    const Vector& qdot0     = getPreviousQDot();
-    const Vector& udot0     = getPreviousUDot();
-    const Vector& zdot0     = getPreviousZDot();
-    const Vector& qdotdot0  = getPreviousQDotDot();
+    // const Vector& q0        = getPreviousQ();
+    // const Vector& u0        = getPreviousU();
+    // const Vector& z0        = getPreviousZ();
+    // const Vector& qdot0     = getPreviousQDot();
+    // const Vector& udot0     = getPreviousUDot();
+    // const Vector& zdot0     = getPreviousZDot();
+    // const Vector& qdotdot0  = getPreviousQDotDot();
 
     const Real h = t1-t0;
 

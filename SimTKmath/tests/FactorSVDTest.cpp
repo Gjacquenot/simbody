@@ -81,8 +81,6 @@ Singular values
 
 #define ASSERT(cond) {SimTK_ASSERT_ALWAYS(cond, "Assertion failed");}
 
-static const double EPS = 0.00001;
-
 using namespace SimTK;
 
 using std::printf;

@@ -149,6 +149,7 @@ int main() {
     ASSERT(isNaN(nfnan));  ASSERT(isNaN(-nfnan));
     ASSERT(!isNaN(nzero)); ASSERT(!isNaN(-ntwo));
     ASSERT(isNaN(ncfnan)); ASSERT(isNaN(-ncfnan));
+    ASSERT(isNaN(njlnan)); ASSERT(isNaN(-njlnan));
 
     
     cout << "one=" << one << " two=" << two << endl;

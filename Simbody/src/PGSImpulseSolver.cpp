@@ -80,7 +80,7 @@ void doRowSums(const Array_<int>& columns, // these are MultiplierIndex ints
 {
     assert(pi.hasContiguousData());
     const Real* pip = &pi[0];
-    const int m = A.nrow(), n = A.ncol();
+    const int m = A.nrow();
 
     assert(A.hasContiguousData()); // packed
     assert(A(0).hasContiguousData()); // in column order

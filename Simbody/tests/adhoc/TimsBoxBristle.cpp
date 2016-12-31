@@ -49,7 +49,7 @@ using namespace SimTK;
 // as they should be. You should see nothing but exact zeroes print out for
 // second and subsequent runs.
 //#define TEST_REPEATABILITY
-static const int NTries=3;
+// static const int NTries=3;
 
 //==============================================================================
 //                     MY HYBRID VERTEX CONTACT ELEMENT
@@ -803,14 +803,14 @@ int main(int argc, char** argv) {
         const Real mu_v = /*0.05*/0; //TODO: fails with mu_v=1, vtrans=.01
         const Real TransitionVelocity = 0.01;
         const Inertia brickInertia(.1,.1,.1);
-        //const Real Radius = .02;
+        // const Real Radius = .02;
         const Real Radius = 1;
     #else
         const Real RunTime=20;
         const Real Stiffness = 1e6;
-        const Real CoefRest = 0; 
-        const Real TargetVelocity = 3; // speed at which to match coef rest
-//        const Real Dissipation = (1-CoefRest)/TargetVelocity;
+        // const Real CoefRest = 0; 
+        // const Real TargetVelocity = 3; // speed at which to match coef rest
+        // const Real Dissipation = (1-CoefRest)/TargetVelocity;
         const Real Dissipation = .1;
         const Real mu_d = .5;
         const Real mu_s = .8;

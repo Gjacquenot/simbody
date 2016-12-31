@@ -228,6 +228,7 @@ void testIsFinite() {
 
     SimTK_TEST(isFinite(fltRegular) && isFinite(dblRegular));
     SimTK_TEST(!isFinite(fltNaN) && !isFinite(dblNaN));
+    SimTK_TEST(!isFinite(nfltNaN) && !isFinite(ndblNaN));
     SimTK_TEST(!isFinite(fltInf) && !isFinite(dblInf));
     SimTK_TEST(!isFinite(mfltInf) && !isFinite(mdblInf));
 
@@ -528,6 +529,12 @@ void testIsNumericallyEqual() {
     SimTK_TEST(nf.isNumericallyEqual(nf));
     SimTK_TEST(nf.isNumericallyEqual(-f));
     SimTK_TEST(!nf.isNumericallyEqual(f));
+    SimTK_TEST(nfn.isNumericallyEqual(nfn));
+    SimTK_TEST(nfn.isNumericallyEqual(-fn));
+    SimTK_TEST(!nfn.isNumericallyEqual(fn));
+    SimTK_TEST(nfe.isNumericallyEqual(nfe));
+    SimTK_TEST(nfe.isNumericallyEqual(-fe));
+    SimTK_TEST(!nfe.isNumericallyEqual(fe));
 
     SimTK_TEST(isNumericallyEqual(1000*f,1234));
     SimTK_TEST(isNumericallyEqual(1234,1000*f));
@@ -620,7 +627,8 @@ void testClamp() {
     SimTK_TEST(clamp(100000000U,ui,4010000000U)==4010000000U);
 
     long l=-234234L; unsigned long ul=293493849UL; 
-    long long ll=-123456789123LL; unsigned long long ull=123456789123ULL;
+    long long ll=-123456789123LL;
+    // unsigned long long ull=123456789123ULL;
     SimTK_TEST(clamp(-1000000L,l,-200000L)==-234234);
     SimTK_TEST(clamp(1000000UL,ul,4000000000UL)==293493849);
     SimTK_TEST(clamp(-100000000000LL,ll,27LL)==-100000000000LL);

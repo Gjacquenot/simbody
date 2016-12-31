@@ -214,11 +214,11 @@ applyBodyForces(const State& state, Real tension,
 // TODO -- this is a stub that does nothing.
 void CablePath::Impl::
 solveForInitialCablePath(State& state) const {
-    const PathInstanceInfo& instInfo = getInstanceInfo(state);
+    // const PathInstanceInfo& instInfo = getInstanceInfo(state);
 
     // These state variables are presumed to be uninitialized here.
-    PathPosEntry& ppe = updPrevPosEntry(state);
-    PathVelEntry& pve = updPrevVelEntry(state);
+    /* PathPosEntry& ppe = */ updPrevPosEntry(state);
+    /* PathVelEntry& pve = */ updPrevVelEntry(state);
 }
 
 //------------------------------------------------------------------------------
@@ -501,7 +501,7 @@ void CablePath::Impl::handleEvents
             updInstanceInfo(state).obstacleDisabled[ox] = false;
             cables->getSystem().realize(state, Stage::Instance);
             // now it's active
-            const ActiveSurfaceIndex asx = currPPE.mapToActiveSurface[ox];
+            // const ActiveSurfaceIndex asx = currPPE.mapToActiveSurface[ox];
             const int xSlot = currPPE.mapToCoords[ox];
             assert(xSlot >= 0); // Should have had coordinates assigned
             const UnitVec3 d(rSPn-rSQp);
@@ -581,16 +581,16 @@ findPathSegmentForObstacle
     const MobilizedBody& B  = thisObs.getMobilizedBody();
     const MobilizedBody& Bn = nextObs.getMobilizedBody();
 
-    const Rotation R_BBp = Bp.findBodyRotationInAnotherBody(state, B);
-    const Rotation R_BBn = Bn.findBodyRotationInAnotherBody(state, B);
+    // const Rotation R_BBp = Bp.findBodyRotationInAnotherBody(state, B);
+    // const Rotation R_BBn = Bn.findBodyRotationInAnotherBody(state, B);
 
-    const Rotation& R_BpSp = prevObs.getObstaclePoseOnBody(state,instInfo).R();
+    // const Rotation& R_BpSp = prevObs.getObstaclePoseOnBody(state,instInfo).R();
     const Transform& X_BS  = thisObs.getObstaclePoseOnBody(state,instInfo);
-    const Rotation& R_BS   = X_BS.R();
-    const Rotation& R_BnSn = nextObs.getObstaclePoseOnBody(state,instInfo).R();
-    const Rotation R_SB = ~R_BS;
-    const Rotation R_SSp = R_SB*R_BBp*R_BpSp;
-    const Rotation R_SSn = R_SB*R_BBn*R_BnSn;
+    // const Rotation& R_BS   = X_BS.R();
+    // const Rotation& R_BnSn = nextObs.getObstaclePoseOnBody(state,instInfo).R();
+    // const Rotation R_SB = ~R_BS;
+    // const Rotation R_SSp = R_SB*R_BBp*R_BpSp;
+    // const Rotation R_SSn = R_SB*R_BBn*R_BnSn;
 
     Vec3 Pp, Qp, Pn, Qn; // points in local body frames
     prevObs.getContactStationsOnBody(state, instInfo, ppe, Pp, Qp);
@@ -652,6 +652,7 @@ ensurePositionKinematicsCalculated(const State& state) const {
         bool succeeded = geo.trackSeparationFromLine
             ((r_SPn+r_SQp)/2, d_QpPn,
             prevClosestPt, closestPointOnSurface, closestPointOnLine, height);
+        assert(succeeded);
 
         ppe.witnesses[sox] = height;
         ppe.closestSurfacePoint[sox] = closestPointOnSurface;
@@ -809,7 +810,7 @@ solveForPathPoints(const State& state, const PathInstanceInfo& instInfo,
         return; // only via points; no iteration to do
 
     const Real ftol = Real(1e-12)*1000; // TODO
-    const Real xtol = Real(1e-12)*1000;
+    // const Real xtol = Real(1e-12)*1000;
 
     const Real estimatedPathErrorAccuracy = ftol;
     PathError pathErrorFnc(ppe.x.size(), *this, state, instInfo, ppe, 
@@ -1149,7 +1150,7 @@ calcPathErrorJacobian(const State&            state,
                       PathPosEntry&           ppe) // in/out
                       const
 {
-    const PathPosEntry& prevPPE = getPrevPosEntry(state);
+    // const PathPosEntry& prevPPE = getPrevPosEntry(state);
 
     const int nx = ppe.x.size();
     ppe.J.resize(nx, nx);
@@ -1242,8 +1243,8 @@ calcPathErrorJacobian(const State&            state,
         
         const int xSlot = ppe.mapToCoords[thisActiveOx];
         assert(xSlot >= 0); // Should have had coordinates assigned
-        const ActiveSurfaceIndex prevASX = 
-            prevPPE.mapToActiveSurface[thisActiveOx];
+        // const ActiveSurfaceIndex prevASX = 
+        //    prevPPE.mapToActiveSurface[thisActiveOx];
  
         //Mat63 DehatDein1, DehatDxP1, DehatDxQ1, DehatDeout1;
         //thisObs.calcSurfacePathErrorJacobianNumerically
@@ -1505,8 +1506,8 @@ calcSurfacePathErrorJacobianAnalytically
                jdQ = current.getJacobiQDot();
     const Real tauP = current.getTorsionP(), 
                tauQ = current.getTorsionQ();
-    const Real kappaP = current.getCurvatureP(), 
-               kappaQ = current.getCurvatureQ();
+    // const Real kappaP = current.getCurvatureP(), 
+    //           kappaQ = current.getCurvatureQ();
     const Real muP = current.getBinormalCurvatureP(),
                muQ = current.getBinormalCurvatureQ();
 

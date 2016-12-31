@@ -44,7 +44,7 @@ public:
     void generateDecorations(const State&                state, 
                              Array_<DecorativeGeometry>& geometry) override
     {
-        const Real TextScale = 0.1;
+        // const Real TextScale = 0.1;
         DecorativeText info; info.setIsScreenText(true);
         info.setText("Faces/vertices: " + String(m_mesh.getNumFaces()) 
                      + "/" + String(m_mesh.getNumVertices()));

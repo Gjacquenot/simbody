@@ -188,7 +188,6 @@ public:
         if (stage == Stage::Topology) {
             appendTopologicalBodyGeometry(geom);
         } else if (stage == Stage::Instance) {
-            const SimbodyMatterSubsystemRep& matterRep = getMyMatterSubsystemRep();
             const Transform& X_PF = getInboardFrame(s);
             const Transform& X_BM  = getOutboardFrame(s);
             appendTopologicalMobilizerGeometry(X_BM, X_PF, geom);
@@ -256,7 +255,7 @@ public:
 
     const MassProperties& getBodyMassProperties(const State& s) const {
         // TODO: these should come from the state if the body has variable mass props
-        const SBInstanceVars& iv = getMyMatterSubsystemRep().getInstanceVars(s);
+        // const SBInstanceVars& iv = getMyMatterSubsystemRep().getInstanceVars(s);
         return getMyRigidBodyNode().getMassProperties_OB_B();
     }
 
@@ -267,12 +266,12 @@ public:
 
     const Transform& getInboardFrame (const State& s) const {
         // TODO: these should come from the state if the mobilizer has variable frames
-        const SBInstanceVars& iv = getMyMatterSubsystemRep().getInstanceVars(s);
+        // const SBInstanceVars& iv = getMyMatterSubsystemRep().getInstanceVars(s);
         return getMyRigidBodyNode().getX_PF();
     }
     const Transform& getOutboardFrame(const State& s) const {
         // TODO: these should come from the state if the mobilizer has variable frames
-        const SBInstanceVars& iv = getMyMatterSubsystemRep().getInstanceVars(s);
+        // const SBInstanceVars& iv = getMyMatterSubsystemRep().getInstanceVars(s);
         return getMyRigidBodyNode().getX_BM();
     }
 
@@ -1816,7 +1815,7 @@ private:
                 uv2(2) = 0;
 
             // Spatial velocity
-            SpatialVec V = h*uv;
+            // SpatialVec V = h*uv;
             SpatialVec V1 = h*uv1;
             SpatialVec V2 = h*uv2;
             // First V[0] is angular velocity, omega
@@ -1824,7 +1823,7 @@ private:
             Mat33 Wdot(Vec3(0), V1[0]%(Vec3::getAs(&W(0,1))), V2[0]%(Vec3::getAs(&W(0,2))));
             
             //Sanity check Omega == V[0]
-            Mat31 Omega = W*(Fq.template getSubMat<3,N>(0,0))*(Mat<N,1>::getAs(up));
+            // Mat31 Omega = W*(Fq.template getSubMat<3,N>(0,0))*(Mat<N,1>::getAs(up));
 
             Mat31 temp;
             for(int i=0; i < N; i++){
